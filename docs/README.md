@@ -9,7 +9,7 @@ Lazy, Python-first, alternative to make, just, doit, and invoke
 1. ...
 
    ```sh
-   import 
+   import
 
    # < TODO: Add example code here >
    ```

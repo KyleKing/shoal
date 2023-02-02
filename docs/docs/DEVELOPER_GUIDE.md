@@ -5,7 +5,7 @@
 ```sh
 git clone https://github.com/kyleking/shoal.git
 cd shoal
-poetry install 
+poetry install
 
 # See the available tasks
 poetry run doit list
@@ -47,5 +47,11 @@ poetry run doit run lock document deploy_docs publish
 ## Current Status
 
 <!-- {cts} COVERAGE -->
+| File                |   Statements |   Missing |   Excluded | Coverage   |
+|---------------------|--------------|-----------|------------|------------|
+| `shoal/__init__.py` |            4 |         0 |          0 | 100.0%     |
+| `shoal/tang.py`     |            9 |         9 |          0 | 0.0%       |
+| **Totals**          |           13 |         9 |          0 | 30.8%      |
 
+Generated on: 2023-02-01
 <!-- {cte} -->

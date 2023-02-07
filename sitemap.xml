@@ -46,32 +46,32 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://shoal.kyleking.me/reference/shoal/ling/</loc>
+         <loc>https://shoal.kyleking.me/reference/shoal/_cli/</loc>
          <lastmod>2023-02-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://shoal.kyleking.me/reference/shoal/shell/</loc>
+         <loc>https://shoal.kyleking.me/reference/shoal/_ling/</loc>
          <lastmod>2023-02-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://shoal.kyleking.me/reference/shoal/tang/</loc>
+         <loc>https://shoal.kyleking.me/reference/shoal/_log/</loc>
          <lastmod>2023-02-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://shoal.kyleking.me/reference/shoal/tangs/</loc>
+         <loc>https://shoal.kyleking.me/reference/shoal/_shell/</loc>
          <lastmod>2023-02-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://shoal.kyleking.me/reference/shoal/_private/</loc>
+         <loc>https://shoal.kyleking.me/reference/shoal/_tang/</loc>
          <lastmod>2023-02-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://shoal.kyleking.me/reference/shoal/_private/cli/</loc>
+         <loc>https://shoal.kyleking.me/reference/shoal/_tangs/</loc>
          <lastmod>2023-02-07</lastmod>
          <changefreq>daily</changefreq>
     </url>

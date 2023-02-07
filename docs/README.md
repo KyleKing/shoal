@@ -17,7 +17,7 @@ For more example code, see the [scripts] directory or the [tests].
 Create a `shoal.py` file with:
 
 ```py
-from shoal.link import shoalling
+from shoal import shoalling
 
 shoalling()
 ```
@@ -35,20 +35,20 @@ Add additional tasks or import tasks from a third party package (such as [`calci
 Create a `<package>/shoal.py` file with:
 
 ```py
-from shoal.link import shoalling  # noqa: F401
+from shoal import shoalling  # noqa: F401
 ```
 
 Add the file to your `pyproject.toml` scripts:
 
 ```toml
 [tool.poetry.scripts]
-replace_me = "shoal:shoalling"
+shoal = "shoal:shoalling"
 ```
 
 Then test with:
 
 ```sh
-poetry run replace_me --task-help
+poetry run shoal --task-help
 ```
 
 ## Project Status

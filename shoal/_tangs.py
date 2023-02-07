@@ -4,7 +4,7 @@ from beartype import beartype
 from beartype.typing import Dict
 from pydantic import BaseModel, Field
 
-from .tang import Tang
+from ._tang import Tang
 
 
 class Tangs(BaseModel):

@@ -7,8 +7,8 @@
 
 """
 
-from beartype.typing import Callable, List
 from beartype import beartype
+from beartype.typing import Callable, List
 from pydantic import BaseModel
 
 
@@ -28,16 +28,16 @@ class Tang(BaseModel):
     target: str
     """Name of the task."""
 
-    recipe: List[Callable[[List[str]], None]]
-    """Steps in the task."""
+    fun: Callable[[List[str]], None]
+    """Tang callable."""
 
     description: str = ''
     """Optional help text."""
 
     # > PLANNED: Add support for these additional arguments
 
-    # prerequisities: List[str] = Field(default_factory=list)
-    # """Optional task and/or file prerequisities."""
+    # prerequisites: List[str] = Field(default_factory=list)
+    # """Optional task and/or file prerequisites."""
 
     # phony: bool = False
     # """Set to True if the `target` should *not* be included in the file preqreuisites.
@@ -50,5 +50,4 @@ class Tang(BaseModel):
 
     @beartype
     def run(self, args: List[str]) -> None:
-        for step in self.recipe:
-            step(args)
+        self.fun(args)

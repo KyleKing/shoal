@@ -7,7 +7,7 @@ from beartype import beartype
 from beartype.typing import List
 
 from ._private.cli import task_help
-from .tangs import registered_tangs
+from ._tangs import registered_tangs
 
 
 @beartype

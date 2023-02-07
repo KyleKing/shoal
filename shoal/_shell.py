@@ -1,23 +1,26 @@
 """Run shell commands."""
 
-import shlex
 import subprocess  # noqa: S404  # nosec
 import sys
 from io import BufferedReader
 from pathlib import Path
+from time import time
 
 from beartype import beartype
 from beartype.typing import Callable, Optional
 
 
 @beartype
-def capture_shell(cmd: str, *, cwd: Optional[Path] = None, printer: Optional[Callable[[str], None]] = None) -> str:
+def capture_shell(
+    cmd: str, *, timeout: int = 120, cwd: Optional[Path] = None, printer: Optional[Callable[[str], None]] = None,
+) -> str:
     """Run shell command and return the output.
 
     Inspired by: https://stackoverflow.com/a/38745040/3219667
 
     Args:
         cmd: shell command
+        timeout: process timeout. Defaults to 2 minutes
         cwd: optional path for shell execution
         printer: optional callable to output the lines in real time
 
@@ -28,15 +31,19 @@ def capture_shell(cmd: str, *, cwd: Optional[Path] = None, printer: Optional[Cal
         CalledProcessError: if return code is non-zero
 
     """
+    start = time()
     lines = []
     with subprocess.Popen(  # noqa: DUO116  # nosec  # nosemgrep
-        shlex.split(cmd), cwd=cwd,
+        cmd, cwd=cwd,
         stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True,
         shell=True,  # noqa: S602
     ) as proc:
         stdout: BufferedReader = proc.stdout  # type: ignore[assignment]
         return_code = None
         while return_code is None:
+            if timeout != 0 and time() - start >= timeout:
+                proc.kill()
+                break
             if line := stdout.readline():
                 lines.append(line)
                 if printer:
@@ -51,11 +58,12 @@ def capture_shell(cmd: str, *, cwd: Optional[Path] = None, printer: Optional[Cal
 
 
 @beartype
-def shell(cmd: str, *, cwd: Optional[Path] = None) -> None:
+def shell(cmd: str, *, timeout: int = 120, cwd: Optional[Path] = None) -> None:
     """Run shell command with buffering output.
 
     Args:
         cmd: shell command
+        timeout: process timeout. Defaults to 2 minutes
         cwd: optional path for shell execution
 
     Raises:
@@ -63,7 +71,7 @@ def shell(cmd: str, *, cwd: Optional[Path] = None) -> None:
 
     """
     subprocess.run(
-        shlex.split(cmd), cwd=cwd,
+        cmd, timeout=timeout or None, cwd=cwd,
         stdout=sys.stdout, stderr=sys.stderr, check=True,
         shell=True,  # noqa: DUO116,S602  # nosec  # nosemgrep
     )

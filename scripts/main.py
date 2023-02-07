@@ -19,15 +19,12 @@ import subprocess  # noqa: S404  # nosec
 from beartype import beartype
 from beartype.typing import List
 
-from shoal.ling import shoalling
-from shoal.shell import capture_shell, shell
-from shoal.tang import Tang
-from shoal.tangs import register
+from shoal import Tang, capture_shell, register, shell, shoalling
 
 
 @beartype
 def test_jq(_argv: List[str]) -> None:
-    # Check the executable because aliases won't work
+    # Example error handling
     jq = 'jq'
     try:
         capture_shell(f'{jq} --help')
@@ -36,18 +33,14 @@ def test_jq(_argv: List[str]) -> None:
         capture_shell(f'{jq} --help')
 
     # Then show the output with or without color
+    print('With captured shell output:\n')
     data = {value: value * 1_000 for value in range(3)}
-    capture_shell(f"echo '{json.dumps(data)}' | gojq", printer=print)
+    capture_shell(f"echo '{json.dumps(data)}' | {jq}", printer=print)
     print('\nWith ANSII Color codes:\n')
-    shell(f"echo '{json.dumps(data)}' | gojq")
-
-
-@beartype
-def tested_jq(argv: List[str]) -> None:
-    print(f'jq was tested for {argv}')
+    shell(f"echo '{json.dumps(data)}' | {jq}")
 
 
 # Assemble each Tang
-register(Tang(target='test-jq', description='Example calling jq', recipe=[test_jq, tested_jq]))
+register(Tang(target='test-jq', description='Example calling jq', fun=test_jq))
 
 shoalling()

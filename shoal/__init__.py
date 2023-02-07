@@ -14,3 +14,8 @@ logger.disable(__pkg_name__)
 
 # FYI: https://github.com/beartype/beartype#are-we-on-the-worst-timeline
 filterwarnings('ignore', category=BeartypeDecorHintPep585DeprecationWarning)
+
+from ._ling import shoalling  # noqa: E402,E408
+from ._shell import capture_shell, shell  # noqa: E402,E408
+from ._tang import Tang  # noqa: E402,E408
+from ._tangs import register  # noqa: E402,E408

@@ -4,7 +4,7 @@
 from beartype import beartype
 
 from .. import __version__
-from ..tangs import registered_tangs
+from .._tangs import registered_tangs
 
 
 @beartype

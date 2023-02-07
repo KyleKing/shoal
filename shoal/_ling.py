@@ -8,7 +8,8 @@ from beartype.typing import List
 
 from ._private.cli import task_help
 from ._tangs import registered_tangs
-
+import logging
+from ._log import configure_logger
 
 @beartype
 def _swim(shoal_args: List[str]) -> None:
@@ -34,6 +35,8 @@ def _run() -> None:  # pragma: no cover
     parser.add_argument('-t', '--task-help', action='store_true', help='Print help for tasks')
     parser.add_argument('shoal_args', help='Arguments passed to shoal. See "-t" for more', nargs='*')
     options = parser.parse_args(sys.argv[1:])
+
+    configure_logger(logging.INFO)
 
     if options.task_help:
         task_help()

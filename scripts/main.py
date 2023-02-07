@@ -19,15 +19,16 @@ import subprocess  # noqa: S404  # nosec
 from beartype import beartype
 from beartype.typing import List
 
-from shoal import capture_shell, register_fun, shell, shoalling
+from shoal import capture_shell, register_fun, shell, shoalling, get_logger
+
+logger = get_logger()
 
 
 @beartype
 def test_jq(argv: List[str]) -> None:
     """Example Tang to run jq."""
-    print(f'Running with argv={argv}\n')
+    logger.info(f'Running with argv={argv}')
 
-    # Example error handling
     jq = 'jq'
     try:
         capture_shell(f'{jq} --help')
@@ -36,10 +37,10 @@ def test_jq(argv: List[str]) -> None:
         capture_shell(f'{jq} --help')
 
     # Then show the output with or without color
-    print('With captured shell output:\n')
+    logger.info('With captured shell output:')
     data = {value: value * 1_000 for value in range(3)}
     capture_shell(f"echo '{json.dumps(data)}' | {jq}", printer=print)
-    print('\nWith ANSII Color codes:\n')
+    logger.info('With ANSII Color codes:')
     shell(f"echo '{json.dumps(data)}' | {jq}")
 
 

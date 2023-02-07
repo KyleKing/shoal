@@ -2,9 +2,10 @@
 
 import logging
 from functools import partial
+
 from beartype import beartype
-from pydantic import BaseModel
 from beartype.typing import Any, Callable
+from pydantic import BaseModel
 
 _DEF_LEVEL = logging.ERROR
 
@@ -13,7 +14,9 @@ _DEF_LEVEL = logging.ERROR
 def _log(message, *, _log_level: int, _this_level: int, **kwargs) -> None:
     """Default log function."""
     if _this_level >= _log_level:
-        print(message, kwargs)
+        print(message)
+        if kwargs:
+            raise NotImplementedError('kwargs are not yet implemented')
 
 
 class _LogSingleton(BaseModel):

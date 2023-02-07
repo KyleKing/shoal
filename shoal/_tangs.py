@@ -4,7 +4,10 @@ from beartype import beartype
 from beartype.typing import Callable, Dict, List
 from pydantic import BaseModel, Field
 
+from ._log import get_logger
 from ._tang import Tang
+
+logger = get_logger()
 
 
 class Tangs(BaseModel):
@@ -17,7 +20,7 @@ class Tangs(BaseModel):
     def add_tang(self, tang: Tang) -> None:
         """Dynamically add a new Tang to the target list."""
         if tang.target in self.targets:
-            print(f'Replaceing {self.targets[tang.target]} with {tang}')
+            logger.warning(f'Replacing {self.targets[tang.target]} with {tang}')
         self.targets[tang.target] = tang
 
 

@@ -9,7 +9,7 @@ pythons = ["3.8"]
 
 [tool.commitizen]
 name = "cz_conventional_commits"
-version = "0.1.0"
+version = "0.2.0"
 version_files = ["pyproject.toml", "shoal/__init__.py"]
 
 [tool.isort]
@@ -24,7 +24,7 @@ multi_line_output = 5
 
 [tool.poetry]
 name = "shoal"
-version = "0.1.0"
+version = "0.2.0"
 description = "Lazy, Python-first, alternative to make, just, doit, and invoke"
 license = "MIT"
 authors = ["Kyle King <dev.act.kyle@gmail.com>"]

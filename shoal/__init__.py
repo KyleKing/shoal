@@ -5,7 +5,7 @@ from warnings import filterwarnings
 from beartype.roar import BeartypeDecorHintPep585DeprecationWarning
 from loguru import logger
 
-__version__ = '0.1.0'
+__version__ = '0.2.0'
 __pkg_name__ = 'shoal'
 
 logger.disable(__pkg_name__)

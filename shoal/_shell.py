@@ -9,6 +9,10 @@ from time import time
 from beartype import beartype
 from beartype.typing import Callable, Optional
 
+from ._log import get_logger
+
+logger = get_logger()
+
 
 @beartype
 def capture_shell(
@@ -31,6 +35,8 @@ def capture_shell(
         CalledProcessError: if return code is non-zero
 
     """
+    logger.debug(f'Running: {cmd!r}', timeout=timeout, cwd=cwd, printer=printer)
+
     start = time()
     lines = []
     with subprocess.Popen(  # noqa: DUO116  # nosec  # nosemgrep
@@ -70,6 +76,8 @@ def shell(cmd: str, *, timeout: int = 120, cwd: Optional[Path] = None) -> None:
         CalledProcessError: if return code is non-zero
 
     """
+    logger.debug(f'Running: {cmd!r}', timeout=timeout, cwd=cwd)
+
     subprocess.run(
         cmd, timeout=timeout or None, cwd=cwd,
         stdout=sys.stdout, stderr=sys.stderr, check=True,

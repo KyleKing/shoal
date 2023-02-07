@@ -41,7 +41,7 @@ def register_fun(fun: Callable[[List[str]], None]):
     description = fun.__doc__.split('\n')[0]
     if not description:
         raise ValueError(f'No docstring found for {name}')
-    register(Tang(target=name, description=description, fun=fun))
+    register(Tang(target=name, description=description, fun=fun, phony=True))
 
 
 @beartype

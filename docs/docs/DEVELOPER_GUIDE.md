@@ -47,11 +47,16 @@ poetry run doit run lock document deploy_docs publish
 ## Current Status
 
 <!-- {cts} COVERAGE -->
-| File                |   Statements |   Missing |   Excluded | Coverage   |
-|---------------------|--------------|-----------|------------|------------|
-| `shoal/__init__.py` |            4 |         0 |          0 | 100.0%     |
-| `shoal/tang.py`     |            9 |         9 |          0 | 0.0%       |
-| **Totals**          |           13 |         9 |          0 | 30.8%      |
+| File                         |   Statements |   Missing |   Excluded | Coverage   |
+|------------------------------|--------------|-----------|------------|------------|
+| `shoal/__init__.py`          |            7 |         0 |          0 | 100.0%     |
+| `shoal/_private/__init__.py` |            0 |         0 |          0 | 100.0%     |
+| `shoal/_private/cli.py`      |           12 |        12 |          0 | 0.0%       |
+| `shoal/ling.py`              |           19 |        19 |         13 | 0.0%       |
+| `shoal/shell.py`             |           31 |        31 |          0 | 0.0%       |
+| `shoal/tang.py`              |           11 |        11 |          0 | 0.0%       |
+| `shoal/tangs.py`             |           18 |        18 |          0 | 0.0%       |
+| **Totals**                   |           98 |        91 |         13 | 7.1%       |
 
-Generated on: 2023-02-01
+Generated on: 2023-02-06
 <!-- {cte} -->

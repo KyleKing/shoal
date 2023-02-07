@@ -19,11 +19,14 @@ import subprocess  # noqa: S404  # nosec
 from beartype import beartype
 from beartype.typing import List
 
-from shoal import Tang, capture_shell, register, shell, shoalling
+from shoal import capture_shell, register_fun, shell, shoalling
 
 
 @beartype
-def test_jq(_argv: List[str]) -> None:
+def test_jq(argv: List[str]) -> None:
+    """Example Tang to run jq."""
+    print(f'Running with argv={argv}\n')
+
     # Example error handling
     jq = 'jq'
     try:
@@ -41,6 +44,6 @@ def test_jq(_argv: List[str]) -> None:
 
 
 # Assemble each Tang
-register(Tang(target='test-jq', description='Example calling jq', fun=test_jq))
+register_fun(test_jq)
 
 shoalling()

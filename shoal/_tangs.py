@@ -1,7 +1,7 @@
 """Tangs (the collection of tasks)."""
 
 from beartype import beartype
-from beartype.typing import Dict
+from beartype.typing import Callable, Dict, List
 from pydantic import BaseModel, Field
 
 from ._tang import Tang
@@ -29,6 +29,16 @@ _TANGS = Tangs()
 def register(tang: Tang) -> None:
     """Dynamically add a new Tang to the target list."""
     _TANGS.add_tang(tang)
+
+
+@beartype
+def register_fun(fun: Callable[[List[str]], None]):
+    """Dynamically add a new Tang based on the provided function."""
+    name = fun.__name__.replace('_', '-')
+    description = fun.__doc__.split('\n')[0]
+    if not description:
+        raise ValueError(f'No docstring found for {name}')
+    register(Tang(target=name, description=description, fun=fun))
 
 
 @beartype

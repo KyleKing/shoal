@@ -18,4 +18,4 @@ filterwarnings('ignore', category=BeartypeDecorHintPep585DeprecationWarning)
 from ._ling import shoalling  # noqa: E402,E408
 from ._shell import capture_shell, shell  # noqa: E402,E408
 from ._tang import Tang  # noqa: E402,E408
-from ._tangs import register  # noqa: E402,E408
+from ._tangs import register, register_fun  # noqa: E402,E408

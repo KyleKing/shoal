@@ -24,7 +24,7 @@ multi_line_output = 5
 
 [tool.poetry]
 name = "shoal"
-version = "0.2.0"
+version = "0.2.1"
 description = "Lazy, Python-first, alternative to make, just, doit, and invoke"
 license = "MIT"
 authors = ["Kyle King <dev.act.kyle@gmail.com>"]
@@ -49,10 +49,10 @@ classifiers = [
 "Changelog" = "https://github.com/kyleking/shoal/blob/main/docs/docs/CHANGELOG.md"
 
 [tool.poetry.dependencies]
-python = "^3.8.12"
+python = "^3.7.12"
 beartype = ">=0.12.0"
-calcipy = ">=0.21.3"
 pydantic = ">=1.10.4"
+rich = ">=13.3.1"
 
 [tool.poetry.dev-dependencies]
-calcipy = { version = "*", extras = ["dev", "lint", "test"] }
+# calcipy = { version = ">=0.21.3", extras = ["dev", "lint", "test"] }

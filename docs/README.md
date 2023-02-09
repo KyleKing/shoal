@@ -14,7 +14,7 @@ For more example code, see the [scripts] directory or the [tests].
 
 ### Local Runner
 
-Create a `shoal.py` file with:
+Create a `shoals.py` file with:
 
 ```py
 from shoal import shoalling
@@ -25,14 +25,14 @@ shoalling()
 Then run the file with:
 
 ```sh
-poetry run python shoal.py --task-help
+poetry run python shoals.py --task-help
 ```
 
 Add additional tasks or import tasks from a third party package (such as [`calcipy`](https://pypi.org/project/calcipy))
 
 ### Package
 
-Create a `<package>/shoal.py` file with:
+Create a `<package>/shoals.py` file with:
 
 ```py
 from shoal import shoalling  # noqa: F401

@@ -1,5 +1,6 @@
 """Log."""
 
+from datetime import datetime
 import logging
 from functools import cached_property, partial
 
@@ -15,10 +16,13 @@ _DEF_LEVEL = logging.ERROR
 class _Styles:
     """Based on `tail-jsonl`."""
 
+    timestamp: str = 'dim grey'
+    message: str = ''
+
     level_error: str = 'red'
     level_warn: str = 'yellow'
-    level_info: str = ''
-    level_debug: str = 'blue'
+    level_info: str = 'green'
+    level_debug: str = 'dim blue'
 
     key: str = 'green'
     value: str = ''
@@ -26,12 +30,26 @@ class _Styles:
     @cached_property
     def _level_lookup(self) -> Dict[int, str]:
         return {
+            logging.CRITICAL: self.level_error,
             logging.ERROR: self.level_error,
             logging.WARNING: self.level_warn,
             logging.INFO: self.level_info,
             logging.DEBUG: self.level_debug,
         }
 
+_LEVEL_TO_NAME = {
+    logging.CRITICAL: "EXCEPTION",
+    logging.ERROR: "ERROR",
+    logging.WARNING: "WARNING",
+    logging.INFO: "INFO",
+    logging.DEBUG: "DEBUG",
+    logging.NOTSET: "NOTSET",
+}
+"""Mapping to logging level name.
+
+https://docs.python.org/3.11/library/logging.html#logging-levels
+
+"""
 
 _STYLES = _Styles()
 
@@ -41,11 +59,19 @@ def _log(message, *, _log_level: int, _this_level: int, _console: Console, **kwa
     """Default log function."""
     if _this_level >= _log_level:
         text = Text()
-        text.append(message, style=_STYLES._level_lookup.get(_this_level))
+        text.append(f"{datetime.now()} ", style=_STYLES.timestamp)
+        text.append(_LEVEL_TO_NAME.get(_this_level), style=_STYLES._level_lookup.get(_this_level))
+        text.append(f" {message}", style=_STYLES.message)
         for key, value in kwargs.items():
             text.append(f' {key}:', style=_STYLES.key)
             text.append(f' {str(value): <10}', style=_STYLES.value)
         _console.print(text)
+
+        if _this_level == logging.CRITICAL:
+            _console.print_exception(show_locals=True)
+            # # Or:
+            # from rich.traceback import install
+            # install(show_locals=True)
 
 
 class _LogSingleton(BaseModel):
@@ -77,7 +103,7 @@ class _Logger:
 
     @beartype
     def exception(self, message, **kwargs) -> None:
-        _LOG_SINGLETON.log(message, _this_level=logging.EXCEPTION, **kwargs)
+        _LOG_SINGLETON.log(message, _this_level=logging.CRITICAL, **kwargs)
 
 
 @beartype

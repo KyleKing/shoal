@@ -3,8 +3,8 @@
 
 from beartype import beartype
 
-from .. import __version__
-from ..tangs import registered_tangs
+from . import __version__
+from ._tangs import registered_tangs
 
 
 @beartype

@@ -11,6 +11,6 @@ FIXME: Replace with programmatic imports? Maybe explicit imports to check backwa
 
 from pprint import pprint
 
-# TODO: Replace with imports to test
+from shoal import shell, capture_shell, register_fun, shoalling, configure_logger, get_logger  # noqa: F401
 
 pprint(locals())  # noqa: T003

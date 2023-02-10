@@ -13,6 +13,6 @@ __pkg_name__ = 'shoal'
 filterwarnings('ignore', category=BeartypeDecorHintPep585DeprecationWarning)
 
 from ._shoalling import shoalling  # noqa: E402,E408
-from ._log import get_logger  # noqa: E402,E408
+from ._log import configure_logger, get_logger  # noqa: E402,E408
 from ._shell import capture_shell, shell  # noqa: E402,E408
 from ._tangs import register_fun  # noqa: E402,E408

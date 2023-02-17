@@ -3,9 +3,15 @@
 import sys
 from pathlib import Path
 
+from beartype.typing import Callable
 from beartype import beartype
 from beartype.typing import List
-from invoke import Collection, Config, Program
+from invoke import Collection, Config, Context, Program
+from functools import wraps
+from contextlib import suppress
+import logging
+from ._log import configure_logger
+from invoke import task as invoke_task
 from pydantic import BaseModel
 
 
@@ -67,3 +73,20 @@ def start_program(pkg_name: str, pkg_version: str, module) -> None:
         namespace=Collection.from_module(module),
         config_class=ShoalConfig,
     ).run()
+
+
+def task(*task_args, **task_kwargs) -> Callable:
+    def outer(func) -> Callable:
+        """Wrap Invoke.task to configure logging."""
+        @invoke_task(*task_args, **task_kwargs)
+        @wraps(func)
+        def inner(ctx: Context, *args, **kwargs) -> None:
+            verbose = 2
+            with suppress(AttributeError):
+                verbose = ctx.config.gto.verbose
+            log_lookup = {3: logging.NOTSET, 2: logging.DEBUG, 1: logging.INFO, 0: logging.WARNING}
+            configure_logger(log_level=log_lookup.get(verbose) or logging.ERROR)
+
+            func(ctx, *args, **kwargs)
+        return inner
+    return outer

@@ -15,8 +15,9 @@ from beartype import beartype
 
 @beartype
 def _chunked(data: List[Any], count: int) -> List[List[Any]]:
+    # TODO: See below link for other options for chunking
+    #   https://realpython.com/how-to-split-a-python-list-into-chunks/
     size = len(data)
-    # TODO: Is the optimum distribution?
     chunk_size, chunk_rem = size // count, size % count
     chunk_size += int(math.ceil(chunk_rem / size))
     return [
@@ -62,7 +63,7 @@ def pretty_process(delegated_task: Callable[[int, Dict, List], List], *, data: L
 
                 # Collect results and catch and errors
                 return [future.result() for future in futures]
-                    
+
 
 # Note: can't use beartype here
 def _long_task(task_id: int, shared_progress: Dict, data: List[Any]) -> None:

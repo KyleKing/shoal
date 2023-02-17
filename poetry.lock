@@ -20,6 +20,18 @@ test-tox = ["mypy (>=0.800)", "numpy", "pytest (>=4.0.0)", "sphinx", "typing-ext
 test-tox-coverage = ["coverage (>=5.5)"]
 
 [[package]]
+name = "invoke"
+version = "2.0.0"
+description = "Pythonic task execution"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "invoke-2.0.0-py3-none-any.whl", hash = "sha256:a860582bcf7a4b336fe18ef53937f0f28cec1c0053ffa767c2fcf7ba0b850f59"},
+    {file = "invoke-2.0.0.tar.gz", hash = "sha256:7ab5dd9cd76b787d560a78b1a9810d252367ab595985c50612702be21d671dd7"},
+]
+
+[[package]]
 name = "markdown-it-py"
 version = "2.1.0"
 description = "Python port of markdown-it. Markdown parsing, done right!"
@@ -160,4 +172,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.7.12"
-content-hash = "486395771da74758ed43077590737e50bf47f6f1d913593cc83996fdadd7bd7a"
+content-hash = "7cff8ded78a6ea38d50f2d7688e084500cb15fc65954d299543ba5f04443592c"

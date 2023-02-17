@@ -1,6 +1,12 @@
 # shoal
 
-Python function and shell command task runner. Alternative to `make`, [`just`](https://github.com/casey/just), [`doit`](https://github.com/pydoit/doit), and [`invoke`](https://pypi.org/project/invoke). Used in [`calcipy`](https://pypi.org/project/calcipy)
+Python function and shell command task runner.
+
+This package started as a completely standalone runner, but became a wrapper of [`invoke`](https://pypi.org/project/invoke). I chose `Invoke` over `doit` because `Invoke` allows more control over namespace creation and task discovery, which allows for partial and lazy loading of the tasks as needed.
+
+Alternatives `shoal` and/or `Invoke` are `make`, [`just`](https://github.com/casey/just), [`doit`](https://github.com/pydoit/doit), [taskipy](https://github.com/illBeRoy/taskipy), [pypyr](https://github.com/pypyr/pypyr/), and many more.
+
+For examples for how `shoal` is Used, take a look at [`calcipy`](https://pypi.org/project/calcipy) and [recipes](https://github.com/KyleKing/recipes)
 
 ## Installation
 
@@ -8,31 +14,9 @@ Python function and shell command task runner. Alternative to `make`, [`just`](h
 
 ## Usage
 
-There are two ways to use `shoal`, either as a way to organize a set of local tasks or to distribute with a package.
+`shoal` is a wrapper of `Invoke` where the app is run as a package. This means that you can either re-vendor the tasks as a new CLI or import them piecemeal to a `task.py` file.
 
-For more example code, see the [scripts] directory or the [tests].
-
-### Local Runner
-
-Create a `shoals.py` file with:
-
-```py
-from shoal import shoalling
-
-shoalling()
-```
-
-Then run the file with:
-
-```sh
-poetry run python shoals.py --task-help
-```
-
-Add additional tasks or import tasks from a third party package (such as [`calcipy`](https://pypi.org/project/calcipy))
-
-### Package
-
-Create a `<package>/shoals.py` file with:
+Create a `<package>/tasks.py` file with:
 
 ```py
 from shoal import shoalling  # noqa: F401
@@ -42,14 +26,18 @@ Add the file to your `pyproject.toml` scripts:
 
 ```toml
 [tool.poetry.scripts]
-shoal = "shoal:shoalling"
+shoal = "package.tasks:shoalling"
 ```
 
 Then test with:
 
 ```sh
-poetry run shoal --task-help
+poetry run shoal --help
 ```
+
+<!-- TODO: Provide examples of creating a task.py file and running with Invoke -->
+
+For more example code, see the [scripts] directory or the [tests].
 
 ## Project Status
 

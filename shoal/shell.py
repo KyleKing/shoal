@@ -9,7 +9,7 @@ from time import time
 from beartype import beartype
 from beartype.typing import Callable, Optional
 
-from ._log import get_logger
+from .log import get_logger
 
 logger = get_logger()
 

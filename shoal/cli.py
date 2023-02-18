@@ -10,10 +10,10 @@ from invoke import Task, Collection, Config, Context, Program
 from functools import wraps
 from contextlib import suppress
 import logging
-from ._log import configure_logger
+from .log import configure_logger
 from invoke import task as invoke_task
 from pydantic import BaseModel
-from ._log import get_logger
+from .log import get_logger
 
 logger = get_logger()
 

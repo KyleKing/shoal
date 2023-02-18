@@ -4,7 +4,7 @@ from pathlib import Path
 
 from beartype import beartype
 from beartype.typing import List
-from ._log import get_logger
+from .log import get_logger
 
 logger = get_logger()
 

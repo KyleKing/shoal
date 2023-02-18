@@ -3,16 +3,19 @@
 import sys
 from pathlib import Path
 
-from beartype.typing import Callable
+from beartype.typing import Any, Callable
 from beartype import beartype
 from beartype.typing import List
-from invoke import Collection, Config, Context, Program
+from invoke import Task, Collection, Config, Context, Program
 from functools import wraps
 from contextlib import suppress
 import logging
 from ._log import configure_logger
 from invoke import task as invoke_task
 from pydantic import BaseModel
+from ._log import get_logger
+
+logger = get_logger()
 
 
 class GlobalTaskOptions(BaseModel):
@@ -50,7 +53,7 @@ def start_program(pkg_name: str, pkg_version: str, module) -> None:
     """
     # Manipulate 'sys.argv' to hide arguments that invoke can't parse
     file_argv: List[Path] = []
-    verbose_argv: int = 0
+    verbose_argv: int = 1
     sys_argv: List[str] = []
     last_argv = ''
     for argv in sys.argv:
@@ -75,18 +78,28 @@ def start_program(pkg_name: str, pkg_version: str, module) -> None:
     ).run()
 
 
-def task(*task_args, **task_kwargs) -> Callable:
-    def outer(func) -> Callable:
-        """Wrap Invoke.task to configure logging."""
+@beartype
+def task(*task_args, **task_kwargs) -> Callable[[Any], Task]:
+    """Wrapper to accept arguments for an invoke task."""
+    @beartype
+    def wrapper(func) -> Task:
+        """Wraps the decorated task."""
         @invoke_task(*task_args, **task_kwargs)
+        @beartype
         @wraps(func)
-        def inner(ctx: Context, *args, **kwargs) -> None:
+        def inner(ctx: Context, *args, **kwargs) -> Task:
+            """Configure logging, then run actual task."""
             verbose = 2
             with suppress(AttributeError):
                 verbose = ctx.config.gto.verbose
             log_lookup = {3: logging.NOTSET, 2: logging.DEBUG, 1: logging.INFO, 0: logging.WARNING}
-            configure_logger(log_level=log_lookup.get(verbose) or logging.ERROR)
+            raw_log_level = log_lookup.get(verbose)
+            configure_logger(log_level=logging.ERROR if raw_log_level is None else raw_log_level)
 
-            func(ctx, *args, **kwargs)
+            print('')  # noqa: T201
+            logger.info(f'Running {func.__name__}', summary=func.__doc__)
+            logger.debug('Task arguments', args=args, kwargs=kwargs)
+
+            return func(ctx, *args, **kwargs)
         return inner
-    return outer
+    return wrapper

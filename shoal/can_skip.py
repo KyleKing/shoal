@@ -4,7 +4,9 @@ from pathlib import Path
 
 from beartype import beartype
 from beartype.typing import List
+from ._log import get_logger
 
+logger = get_logger()
 
 @beartype
 def can_skip(*, prerequisites: List[Path], targets: List[Path]) -> bool:
@@ -22,12 +24,12 @@ def can_skip(*, prerequisites: List[Path], targets: List[Path]) -> bool:
     ```
 
     """
-    ts_prerequisites = [pth.getmtime() for pth in prerequisites]
+    ts_prerequisites = [pth.stat().st_mtime for pth in prerequisites]
     if not ts_prerequisites:
         raise ValueError('Required files do not exist', prerequisites)
 
     # TODO: Triple check this logic (https://stackoverflow.com/a/22960700/3219667)
-    ts_targets = [pth.getmtime() for pth in targets]
+    ts_targets = [pth.stat().st_mtime for pth in targets]
     if ts_targets and max(ts_prerequisites) >= min(ts_targets):
         logger.info('Skipping because targets are newer', targets=targets)
         return False

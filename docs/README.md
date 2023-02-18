@@ -4,7 +4,7 @@ Python function and shell command task runner.
 
 This package started as a completely standalone runner, but became a wrapper of [`invoke`](https://pypi.org/project/invoke). I chose `Invoke` over `doit` because `Invoke` allows more control over namespace creation and task discovery, which allows for partial and lazy loading of the tasks as needed.
 
-Alternatives `shoal` and/or `Invoke` are `make`, [`just`](https://github.com/casey/just), [`doit`](https://github.com/pydoit/doit), [taskipy](https://github.com/illBeRoy/taskipy), [pypyr](https://github.com/pypyr/pypyr/), and many more.
+Alternatives to `shoal` and/or `Invoke` are `make`, [`just`](https://github.com/casey/just), [`doit`](https://github.com/pydoit/doit), [duty](https://github.com/pawamoy/duty), [taskipy](https://github.com/illBeRoy/taskipy), [pypyr](https://github.com/pypyr/pypyr/), and many more.
 
 For examples for how `shoal` is Used, take a look at [`calcipy`](https://pypi.org/project/calcipy) and [recipes](https://github.com/KyleKing/recipes)
 

@@ -8,6 +8,7 @@ from ._log import get_logger
 
 logger = get_logger()
 
+
 @beartype
 def can_skip(*, prerequisites: List[Path], targets: List[Path]) -> bool:
     """Generic make-style task skipping logic based on file `mtime`.
@@ -28,9 +29,8 @@ def can_skip(*, prerequisites: List[Path], targets: List[Path]) -> bool:
     if not ts_prerequisites:
         raise ValueError('Required files do not exist', prerequisites)
 
-    # TODO: Triple check this logic (https://stackoverflow.com/a/22960700/3219667)
     ts_targets = [pth.stat().st_mtime for pth in targets]
-    if ts_targets and max(ts_prerequisites) >= min(ts_targets):
-        logger.info('Skipping because targets are newer', targets=targets)
+    if ts_targets and min(ts_targets) > max(ts_prerequisites):
+        logger.warning('Skipping because targets are newer', targets=targets)
         return False
     return True

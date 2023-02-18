@@ -24,6 +24,7 @@ class GlobalTaskOptions(BaseModel):
     file_args: List[Path]
     verbose: int
 
+
 class _ShoalProgram(Program):
     """Customized version of Invoke's `Program`."""
 
@@ -96,10 +97,12 @@ def task(*task_args, **task_kwargs) -> Callable[[Any], Task]:
             raw_log_level = log_lookup.get(verbose)
             configure_logger(log_level=logging.ERROR if raw_log_level is None else raw_log_level)
 
-            print('')  # noqa: T201
             logger.info(f'Running {func.__name__}', summary=func.__doc__)
             logger.debug('Task arguments', args=args, kwargs=kwargs)
 
-            return func(ctx, *args, **kwargs)
+            result = func(ctx, *args, **kwargs)
+
+            logger.debug(f'Completed {func.__name__}', result=result)
+            return result
         return inner
     return wrapper

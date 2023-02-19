@@ -97,7 +97,8 @@ def task(*task_args, **task_kwargs) -> Callable[[Any], Task]:
             raw_log_level = log_lookup.get(verbose)
             configure_logger(log_level=logging.ERROR if raw_log_level is None else raw_log_level)
 
-            logger.info(f'Running {func.__name__}', summary=func.__doc__)
+            summary = func.__doc__.split('\n')[0]
+            logger.info(f'Running {func.__name__}', summary=summary)
             logger.debug('Task arguments', args=args, kwargs=kwargs)
 
             result = func(ctx, *args, **kwargs)

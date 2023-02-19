@@ -32,5 +32,5 @@ def can_skip(*, prerequisites: List[Path], targets: List[Path]) -> bool:
     ts_targets = [pth.stat().st_mtime for pth in targets]
     if ts_targets and min(ts_targets) > max(ts_prerequisites):
         logger.warning('Skipping because targets are newer', targets=targets)
-        return False
-    return True
+        return True
+    return False

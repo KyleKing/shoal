@@ -49,11 +49,12 @@ classifiers = [
 "Changelog" = "https://github.com/kyleking/shoal/blob/main/docs/docs/CHANGELOG.md"
 
 [tool.poetry.dependencies]
-python = "^3.7.12"
+python = "^3.8.12"
 beartype = ">=0.12.0"
 invoke = ">=2.0.0"
 pydantic = ">=1.10.4"
-rich = ">=13.3.1"
+rich = ">=12.6.0"
 
 [tool.poetry.dev-dependencies]
 # calcipy = { version = ">=0.21.3", extras = ["dev", "lint", "test"] }
+pytest-subprocess = ">=1.4.1"

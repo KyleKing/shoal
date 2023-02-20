@@ -1,31 +1,15 @@
 [build-system]
 build-backend = "poetry.core.masonry.api"
-requires = [
-  "poetry-core",
-]
-
-[tool.calcipy.test]
-pythons = ["3.8"]
+requires = ["poetry-core"]
 
 [tool.commitizen]
-name = "cz_conventional_commits"
-version = "0.2.0"
+version = "0.6.0"
 version_files = ["pyproject.toml", "shoal/__init__.py"]
-
-[tool.isort]
-balanced_wrapping = true
-default_section = "THIRDPARTY"
-force_grid_wrap = 0
-include_trailing_comma = true
-known_first_party = "shoal"
-length_sort = false
-line_length = 120
-multi_line_output = 5
 
 [tool.poetry]
 authors = ["Kyle King <dev.act.kyle@gmail.com>"]
 classifiers = [
-  "Development Status :: 1 - Planning",
+  "Development Status :: 4 - Beta",
   "License :: OSI Approved :: MIT License",
   "Operating System :: OS Independent",
   "Programming Language :: Python :: 3.10",
@@ -33,7 +17,7 @@ classifiers = [
   "Programming Language :: Python :: 3.8",
   "Programming Language :: Python :: 3.9",
 ] # https://pypi.org/classifiers/
-description = "Lazy, Python-first, alternative to make, just, doit, and invoke"
+description = "Opinionated CLI Task Runner built on Invoke"
 documentation = "https://shoal.kyleking.me"
 include = ["LICENSE.md"]
 keywords = []
@@ -45,16 +29,22 @@ repository = "https://github.com/kyleking/shoal"
 version = "0.6.0"
 
 [tool.poetry.dependencies]
-python = "^3.8.12"
+python = "^3.8"
 beartype = ">=0.12.0"
 invoke = ">=2.0.0"
 pydantic = ">=1.10.4"
 rich = ">=12.6.0"
 
-[tool.poetry.dev-dependencies]
-# calcipy = { version = ">=0.21.3", extras = ["dev", "lint", "test"] }
+[tool.poetry.group.dev.dependencies]
+calcipy = {extras = ["doc", "lint", "mypy", "nox", "stale", "tags", "test"], version = ">=1.0.0"}
 pytest-subprocess = ">=1.4.1"
 
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/kyleking/shoal/issues"
 "Changelog" = "https://github.com/kyleking/shoal/blob/main/docs/docs/CHANGELOG.md"
+
+[tool.pyright]
+include = ["shoal"]
+pythonVersion = "3.8"
+venv = ".venv"
+venvPath = "."

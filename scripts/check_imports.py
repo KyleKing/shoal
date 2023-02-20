@@ -1,16 +1,8 @@
-"""Check that all imports work as expected.
-
-Primarily checking that:
-
-1. No optional dependencies are required
-
-FIXME: Replace with programmatic imports? Maybe explicit imports to check backward compatibility of public API?
-    https://stackoverflow.com/questions/34855071/importing-all-functions-from-a-package-from-import
-
-"""
+# noqa: INP001
+"""Check that all imports work as expected in the built package."""
 
 from pprint import pprint
 
-from shoal import shell, capture_shell, register_fun, shoalling, configure_logger, get_logger  # noqa: F401
+from  import replace_me
 
-pprint(locals())  # noqa: T003
+pprint(locals())  # noqa: T203

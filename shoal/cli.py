@@ -1,9 +1,10 @@
 """Extend Invoke for Calcipy."""
 
+import os
 import sys
 from pathlib import Path
 
-from beartype.typing import Any, Callable
+from beartype.typing import Any, Callable, Dict
 from beartype import beartype
 from beartype.typing import List
 from invoke import Task, Collection, Config, Context, Program
@@ -12,8 +13,9 @@ from contextlib import suppress
 import logging
 from .log import configure_logger
 from invoke import task as invoke_task
-from pydantic import BaseModel
+from pydantic import BaseModel, Field, PositiveInt, conint
 from .log import get_logger
+from .invoke_helpers import use_pty
 
 logger = get_logger()
 
@@ -21,8 +23,14 @@ logger = get_logger()
 class GlobalTaskOptions(BaseModel):
     """Global Task Options."""
 
-    file_args: List[Path]
-    verbose: int
+    working_dir: Path = Field(default_factory=Path.cwd)
+    """Working directory for the program to use globally."""
+
+    file_args: List[Path] = Field(default_factory=list)
+    """List of Paths to modify."""
+
+    verbose: PositiveInt = Field(default=2, lte=3)
+    """Verbosity level."""
 
 
 class _ShoalProgram(Program):
@@ -38,11 +46,28 @@ class _ShoalProgram(Program):
         print('Global Task Options:')  # noqa: T201
         print('')  # noqa: T201
         self.print_columns([
-            ('*file_args', 'List of Paths available globally to all tasks'),
+            ('working_dir', 'Set the cwd for the program. Example: "../run --working-dir .. lint test"'),
+            ('*file_args', 'List of Paths available globally to all tasks. Will resolve paths with working_dir'),
             ('verbose', 'Globally configure logger verbosity (-vvv for most verbose)'),
         ])
         print('')  # noqa: T201
 
+class ShoalConfig(Config):
+
+    @staticmethod
+    def global_defaults() -> Dict:
+        """Override the global defaults."""
+        defaults = Config.global_defaults()
+        return {
+            **defaults,
+            "run": {
+                **defaults["run"],
+                "asynchronous": False,  # PLANNED: When can this be True?
+                "echo": True,
+                "echo_format": "\033[2;3;37mRunning: {command}\033[0m",
+                "pty": use_pty(),
+            },
+        }
 
 @beartype
 def start_program(pkg_name: str, pkg_version: str, module) -> None:
@@ -53,29 +78,34 @@ def start_program(pkg_name: str, pkg_version: str, module) -> None:
 
     """
     # Manipulate 'sys.argv' to hide arguments that invoke can't parse
-    file_argv: List[Path] = []
-    verbose_argv: int = 1
+    _gto = GlobalTaskOptions()
     sys_argv: List[str] = []
     last_argv = ''
     for argv in sys.argv:
         if not last_argv.startswith('-') and Path(argv).is_file():
-            file_argv.append(Path(argv))
+            _gto.file_args.append(Path(argv))
         elif argv in {'-v', '-vv', '-vvv', '--verbose'}:
-            verbose_argv = argv.count('v')
-        else:
+            _gto.verbose = argv.count('v')
+        elif last_argv in {'--working-dir',}:
+            _gto.working_dir = Path(argv).resolve()
+        elif argv not in {'--working-dir',}:
             sys_argv.append(argv)
         last_argv = argv
+    _gto.file_args = [
+        _f if _f.is_absolute() else Path.cwd() / _f
+        for _f in _gto.file_args
+    ]
     sys.argv = sys_argv
 
-    class ShoalConfig(Config):
+    class _ShoalConfig(ShoalConfig):
 
-        gto: GlobalTaskOptions = GlobalTaskOptions(file_args=file_argv, verbose=verbose_argv)
+        gto: GlobalTaskOptions = _gto
 
     _ShoalProgram(
         name=pkg_name,
         version=pkg_version,
         namespace=Collection.from_module(module),
-        config_class=ShoalConfig,
+        config_class=_ShoalConfig,
     ).run()
 
 
@@ -89,21 +119,26 @@ def task(*task_args, **task_kwargs) -> Callable[[Any], Task]:
         @beartype
         @wraps(func)
         def inner(ctx: Context, *args, **kwargs) -> Task:
-            """Configure logging, then run actual task."""
-            verbose = 2
-            with suppress(AttributeError):
-                verbose = ctx.config.gto.verbose
+            """Wrap the task with settings configured in `gto` for working_dir and logging."""
+            try:
+                ctx.config.gto
+            except AttributeError:
+                ctx.config.gto = GlobalTaskOptions()
+
+            os.chdir(ctx.config.gto.working_dir)
+
+            verbose = ctx.config.gto.verbose
             log_lookup = {3: logging.NOTSET, 2: logging.DEBUG, 1: logging.INFO, 0: logging.WARNING}
             raw_log_level = log_lookup.get(verbose)
             configure_logger(log_level=logging.ERROR if raw_log_level is None else raw_log_level)
 
             summary = func.__doc__.split('\n')[0]
-            logger.info(f'Running {func.__name__}', summary=summary)
-            logger.debug('Task arguments', args=args, kwargs=kwargs)
+            logger.print(f'Running {func.__name__}', is_header=True, summary=summary)
+            logger.print_debug('With task arguments', args=args, kwargs=kwargs)
 
             result = func(ctx, *args, **kwargs)
 
-            logger.debug(f'Completed {func.__name__}', result=result)
+            logger.print_debug(f'Completed {func.__name__}', result=result)
             return result
         return inner
     return wrapper

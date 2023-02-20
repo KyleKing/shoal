@@ -34,3 +34,9 @@ def can_skip(*, prerequisites: List[Path], targets: List[Path]) -> bool:
         logger.warning('Skipping because targets are newer', targets=targets)
         return True
     return False
+
+
+@beartype
+def dont_skip(*, prerequisites: List[Path], targets: List[Path]) -> bool:
+    """To use for testing with mock; always returns False."""
+    return False

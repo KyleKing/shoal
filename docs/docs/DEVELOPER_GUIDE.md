@@ -5,7 +5,7 @@
 ```sh
 git clone https://github.com/kyleking/shoal.git
 cd shoal
-poetry install 
+poetry install --sync
 
 # See the available tasks
 poetry run calcipy

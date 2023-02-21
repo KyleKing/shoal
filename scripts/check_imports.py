@@ -3,6 +3,6 @@
 
 from pprint import pprint
 
-from  import replace_me
+from shoal import replace_me
 
 pprint(locals())  # noqa: T203

@@ -26,12 +26,17 @@ def _chunked(data: List[Any], count: int) -> List[List[Any]]:
 
 
 @beartype
-def pretty_process(delegated_task: Callable[[int, Dict, List], List], *, data: List[Any], num_workers: int = 3) -> List[Any]:
+def pretty_process(
+    delegated_task: Callable[[int, Dict, List], List],
+    *,
+    data: List[Any],
+    num_workers: int = 3,
+) -> List[Any]:
     futures = []  # keep track of the jobs
     with Progress(
-        "[progress.description]{task.description}",
+        '[progress.description]{task.description}',
         BarColumn(),
-        "[progress.percentage]{task.percentage:>3.0f}%",
+        '[progress.percentage]{task.percentage:>3.0f}%',
         TimeRemainingColumn(),
         TimeElapsedColumn(),
         refresh_per_second=1,
@@ -40,11 +45,11 @@ def pretty_process(delegated_task: Callable[[int, Dict, List], List], *, data: L
         with multiprocessing.Manager() as manager:
             shared_progress = manager.dict()
             totals = {}
-            task_id_all = progress.add_task("[green]All jobs progress:")
+            task_id_all = progress.add_task('[green]All jobs progress:')
 
             with ProcessPoolExecutor(max_workers=num_workers) as executor:
                 for ix, chunk in enumerate(_chunked(data, count=num_cpus)):
-                    task_id = progress.add_task(f"task {ix}")
+                    task_id = progress.add_task(f'task {ix}')
                     shared_progress[task_id] = 0
                     totals[task_id] = len(chunk)
                     futures.append(executor.submit(
@@ -73,7 +78,7 @@ def _long_task(task_id: int, shared_progress: Dict, data: List[Any]) -> None:
     return val
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     # Resolve number of cores or specified maximum
     num_cpus = 4
     try:

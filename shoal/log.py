@@ -5,7 +5,7 @@ import logging
 from functools import cached_property, partial
 
 from beartype import beartype
-from beartype.typing import Any, Callable, Dict, Optional
+from beartype.typing import Any, Callable, Dict
 from pydantic import BaseModel
 from rich.console import Console
 from rich.text import Text
@@ -37,13 +37,14 @@ class _Styles:
             logging.DEBUG: self.level_debug,
         }
 
+
 _LEVEL_TO_NAME = {
-    logging.CRITICAL: "EXCEPTION",
-    logging.ERROR: "ERROR",
-    logging.WARNING: "WARNING",
-    logging.INFO: "INFO",
-    logging.DEBUG: "DEBUG",
-    logging.NOTSET: "NOTSET",
+    logging.CRITICAL: 'EXCEPTION',
+    logging.ERROR: 'ERROR',
+    logging.WARNING: 'WARNING',
+    logging.INFO: 'INFO',
+    logging.DEBUG: 'DEBUG',
+    logging.NOTSET: 'NOTSET',
 }
 """Mapping to logging level name.
 
@@ -69,11 +70,11 @@ def _log(
     text = Text()
     if is_print:
         mesage_style = ('bold ' if is_header else '') + _STYLES.level_info
-        text.append(f"{message}", style=mesage_style)
+        text.append(f'{message}', style=mesage_style)
     else:
-        text.append(f"{datetime.now()} ", style=_STYLES.timestamp)
+        text.append(f'{datetime.now()} ', style=_STYLES.timestamp)
         text.append(_LEVEL_TO_NAME.get(_this_level, ''), style=_STYLES._level_lookup.get(_this_level))
-        text.append(f" {message}", style=_STYLES.message)
+        text.append(f' {message}', style=_STYLES.message)
     for key, value in kwargs.items():
         text.append(f' {key}:', style=_STYLES.key)
         text.append(f' {str(value): <10}', style=_STYLES.value)

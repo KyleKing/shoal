@@ -1,4 +1,3 @@
-from pathlib import Path
 
 import pytest
 
@@ -19,8 +18,6 @@ from shoal.can_skip import can_skip
 def test_skip(fix_test_cache, create_order, prerequisites, targets, expected):
     for sub_pth in create_order:
         (fix_test_cache / sub_pth).write_text('')
-    path_lock = fix_test_cache / 'poetry.lock'
-    path_cache = fix_test_cache / 'cache.json'
 
     result = can_skip(
         prerequisites=[fix_test_cache / sub_pth for sub_pth in prerequisites],

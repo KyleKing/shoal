@@ -9,13 +9,14 @@ from beartype import beartype
 from beartype.typing import List
 from invoke import Task, Collection, Config, Context, Program
 from functools import wraps
-from contextlib import suppress
 import logging
 from .log import configure_logger
 from invoke import task as invoke_task
-from pydantic import BaseModel, Field, PositiveInt, conint
+from pydantic import BaseModel, Field, PositiveInt
 from .log import get_logger
 from .invoke_helpers import use_pty
+from invoke import Program
+from invoke.config import Config, merge_dicts
 
 logger = get_logger()
 
@@ -52,22 +53,23 @@ class _ShoalProgram(Program):
         ])
         print('')  # noqa: T201
 
+
 class ShoalConfig(Config):
 
     @staticmethod
     def global_defaults() -> Dict:
         """Override the global defaults."""
-        defaults = Config.global_defaults()
-        return {
-            **defaults,
-            "run": {
-                **defaults["run"],
-                "asynchronous": False,  # PLANNED: When can this be True?
-                "echo": True,
-                "echo_format": "\033[2;3;37mRunning: {command}\033[0m",
-                "pty": use_pty(),
+        invoke_defaults = Config.global_defaults()
+        shoal_defaults = {
+            'run': {
+                'asynchronous': False,  # PLANNED: When can this be True?
+                'echo': True,
+                'echo_format': '\033[2;3;37mRunning: {command}\033[0m',
+                'pty': use_pty(),
             },
         }
+        return merge_dicts(invoke_defaults, shoal_defaults)
+
 
 @beartype
 def start_program(pkg_name: str, pkg_version: str, module) -> None:
@@ -79,16 +81,16 @@ def start_program(pkg_name: str, pkg_version: str, module) -> None:
     """
     # Manipulate 'sys.argv' to hide arguments that invoke can't parse
     _gto = GlobalTaskOptions()
-    sys_argv: List[str] = []
+    sys_argv: List[str] = sys.argv[:1]
     last_argv = ''
-    for argv in sys.argv:
+    for argv in sys.argv[1:]:
         if not last_argv.startswith('-') and Path(argv).is_file():
             _gto.file_args.append(Path(argv))
         elif argv in {'-v', '-vv', '-vvv', '--verbose'}:
             _gto.verbose = argv.count('v')
-        elif last_argv in {'--working-dir',}:
+        elif last_argv in {'--working-dir', }:
             _gto.working_dir = Path(argv).resolve()
-        elif argv not in {'--working-dir',}:
+        elif argv not in {'--working-dir', }:
             sys_argv.append(argv)
         last_argv = argv
     _gto.file_args = [

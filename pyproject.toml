@@ -36,8 +36,8 @@ pydantic = ">=1.10.4"
 rich = ">=12.6.0"
 
 [tool.poetry.group.dev.dependencies]
-autopep8 = "^2.0.1"  # PLANNED: Pending inclusion in calcipy[lint]...
-calcipy = {extras = ["doc", "lint", "mypy", "nox", "stale", "tags", "test"], version = ">=1.0.0rc0"}
+autopep8 = "^2.0.1" # PLANNED: Pending inclusion in calcipy[lint]...
+calcipy = {extras = ["doc", "lint", "nox", "stale", "tags", "test", "types"], version = ">=1.0.0rc0"}
 pytest-subprocess = ">=1.4.1"
 
 [tool.poetry.urls]

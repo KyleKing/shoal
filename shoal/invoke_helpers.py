@@ -1,12 +1,12 @@
 """Invoke Helpers."""
 
-from contextlib import suppress
 import platform
+from contextlib import suppress
 from functools import lru_cache
 from os import environ
 
-from invoke import Context, Result
 from beartype import beartype
+from invoke import Context, Result
 
 
 @lru_cache(maxsize=1)

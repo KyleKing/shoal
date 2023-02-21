@@ -35,7 +35,7 @@ def capture_shell(
         CalledProcessError: if return code is non-zero
 
     """
-    logger.debug(f'Running: {cmd!r}', timeout=timeout, cwd=cwd, printer=printer)
+    logger.debug('Running', cmd=cmd, timeout=timeout, cwd=cwd, printer=printer)
 
     start = time()
     lines = []
@@ -59,7 +59,7 @@ def capture_shell(
 
     output = ''.join(lines)  # type: ignore[unreachable]
     if return_code != 0:
-        raise subprocess.CalledProcessError(returncode=return_code, cmd=cmd, output=output)
+        raise subprocess.CalledProcessError(returncode=return_code or 404, cmd=cmd, output=output)
     return output
 
 
@@ -76,7 +76,7 @@ def shell(cmd: str, *, timeout: int = 120, cwd: Optional[Path] = None) -> None:
         CalledProcessError: if return code is non-zero
 
     """
-    logger.debug(f'Running: {cmd!r}', timeout=timeout, cwd=cwd)
+    logger.debug('Running', cmd=cmd, timeout=timeout, cwd=cwd)
 
     subprocess.run(
         cmd, timeout=timeout or None, cwd=cwd,

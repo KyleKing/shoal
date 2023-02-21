@@ -4,6 +4,7 @@ from pathlib import Path
 
 from beartype import beartype
 from beartype.typing import List
+
 from .log import get_logger
 
 logger = get_logger()
@@ -39,4 +40,5 @@ def can_skip(*, prerequisites: List[Path], targets: List[Path]) -> bool:
 @beartype
 def dont_skip(*, prerequisites: List[Path], targets: List[Path]) -> bool:
     """To use for testing with mock; always returns False."""
+    logger.debug('Mocking can_skip', prerequisites=prerequisites, targets=targets)
     return False

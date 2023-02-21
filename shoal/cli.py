@@ -1,22 +1,21 @@
 """Extend Invoke for Calcipy."""
 
+import logging
 import os
 import sys
-from pathlib import Path
-
-from beartype.typing import Any, Callable, Dict
-from beartype import beartype
-from beartype.typing import List
-from invoke import Task, Collection, Config, Context, Program
 from functools import wraps
-import logging
-from .log import configure_logger
-from invoke import task as invoke_task
+from pathlib import Path
+from types import ModuleType
+
+from beartype import beartype
+from beartype.typing import Any, Callable, Dict, List
+from invoke import Collection, Config, Context, Program, Task
+from invoke import task as invoke_task  # noqa: TID251
+from invoke.config import merge_dicts
 from pydantic import BaseModel, Field, PositiveInt
-from .log import get_logger
+
 from .invoke_helpers import use_pty
-from invoke import Program
-from invoke.config import Config, merge_dicts
+from .log import configure_logger, get_logger
 
 logger = get_logger()
 
@@ -55,6 +54,7 @@ class _ShoalProgram(Program):
 
 
 class ShoalConfig(Config):
+    """Opinionated Config with better defaults."""
 
     @staticmethod
     def global_defaults() -> Dict:
@@ -72,7 +72,7 @@ class ShoalConfig(Config):
 
 
 @beartype
-def start_program(pkg_name: str, pkg_version: str, module) -> None:
+def start_program(pkg_name: str, pkg_version: str, module: ModuleType) -> None:
     """Run the customized Invoke Program.
 
     FYI: recommendation is to extend the `core_args` method, but this won't parse positional arguments:
@@ -88,9 +88,9 @@ def start_program(pkg_name: str, pkg_version: str, module) -> None:
             _gto.file_args.append(Path(argv))
         elif argv in {'-v', '-vv', '-vvv', '--verbose'}:
             _gto.verbose = argv.count('v')
-        elif last_argv in {'--working-dir', }:
+        elif last_argv in {'--working-dir'}:
             _gto.working_dir = Path(argv).resolve()
-        elif argv not in {'--working-dir', }:
+        elif argv not in {'--working-dir'}:
             sys_argv.append(argv)
         last_argv = argv
     _gto.file_args = [
@@ -115,7 +115,7 @@ def start_program(pkg_name: str, pkg_version: str, module) -> None:
 def task(*task_args, **task_kwargs) -> Callable[[Any], Task]:
     """Wrapper to accept arguments for an invoke task."""
     @beartype
-    def wrapper(func) -> Task:
+    def wrapper(func) -> Task:  # noqa: ANN001
         """Wraps the decorated task."""
         @invoke_task(*task_args, **task_kwargs)
         @beartype
@@ -135,12 +135,12 @@ def task(*task_args, **task_kwargs) -> Callable[[Any], Task]:
             configure_logger(log_level=logging.ERROR if raw_log_level is None else raw_log_level)
 
             summary = func.__doc__.split('\n')[0]
-            logger.print(f'Running {func.__name__}', is_header=True, summary=summary)
-            logger.print_debug('With task arguments', args=args, kwargs=kwargs)
+            logger.text(f'Running {func.__name__}', is_header=True, summary=summary)
+            logger.text_debug('With task arguments', args=args, kwargs=kwargs)
 
             result = func(ctx, *args, **kwargs)
 
-            logger.print_debug(f'Completed {func.__name__}', result=result)
+            logger.text_debug(f'Completed {func.__name__}', result=result)
             return result
         return inner
     return wrapper

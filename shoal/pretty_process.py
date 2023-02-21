@@ -4,17 +4,32 @@ Based on: https://www.deanmontgomery.com/2022/03/24/rich-progress-and-multiproce
 
 """
 
+import math
 import multiprocessing
 from concurrent.futures import ProcessPoolExecutor
+from multiprocessing.managers import DictProxy
 from time import sleep
-from beartype.typing import Any, Callable, Dict, List
-from rich.progress import Progress, BarColumn, TimeRemainingColumn, TimeElapsedColumn
-import math
+from typing import runtime_checkable
+
 from beartype import beartype
+from beartype.typing import Any, List, Protocol, TypeVar
+from rich.progress import BarColumn, Progress, TimeElapsedColumn, TimeRemainingColumn
+
+_ItemT = TypeVar('_ItemT', bound=Any)
+"""Iterated item in the data."""
+
+
+@runtime_checkable
+class _DelegatedTask(Protocol):
+    """Defined the kwargs accepted for a delegated task."""
+
+    def __call__(self, *, task_id: int, shared_progress: DictProxy, data: List[_ItemT]) -> Any:
+        ...
 
 
 @beartype
-def _chunked(data: List[Any], count: int) -> List[List[Any]]:
+def _chunked(data: List[_ItemT], count: int) -> List[List[_ItemT]]:
+    """Chunk the list of data into equally sized lists."""
     # TODO: See below link for other options for chunking
     #   https://realpython.com/how-to-split-a-python-list-into-chunks/
     size = len(data)
@@ -26,24 +41,30 @@ def _chunked(data: List[Any], count: int) -> List[List[Any]]:
 
 
 @beartype
-def pretty_process(
-    delegated_task: Callable[[int, Dict, List], List],
-    *,
-    data: List[Any],
-    num_workers: int = 3,
-) -> List[Any]:
-    futures = []  # keep track of the jobs
-    with Progress(
+def pretty_process(delegated_task: _DelegatedTask, *, data: List[_ItemT], num_workers: int = 3) -> Any:
+    """Run a task in parallel to process all provided data.
+
+    Uses `rich` to display pretty progress bars
+
+    Args:
+        delegated_task: must call `shared_progress[task_id] += 1` on each item in data
+        data: the list of data to distribute
+        num_workers: number of worker processes
+
+    """
+    # Docs: https://rich.readthedocs.io/en/latest/progress.html
+    columns = [
         '[progress.description]{task.description}',
         BarColumn(),
         '[progress.percentage]{task.percentage:>3.0f}%',
         TimeRemainingColumn(),
         TimeElapsedColumn(),
-        refresh_per_second=1,
-    ) as progress:
+    ]
+    with Progress(*columns, refresh_per_second=1) as progress:  # noqa: SIM117 (Py>3.9)
         # Share state between process and workers
         with multiprocessing.Manager() as manager:
             shared_progress = manager.dict()
+            jobs = []
             totals = {}
             task_id_all = progress.add_task('[green]All jobs progress:')
 
@@ -52,40 +73,40 @@ def pretty_process(
                     task_id = progress.add_task(f'task {ix}')
                     shared_progress[task_id] = 0
                     totals[task_id] = len(chunk)
-                    futures.append(executor.submit(
+                    jobs.append(executor.submit(
                         delegated_task, task_id=task_id, shared_progress=shared_progress, data=chunk,
                     ))
 
                 # Update progress bar from shared state
-                remaining = len(futures)
+                remaining = len(jobs)
                 while remaining:
                     n_done = 0
                     for task_id, latest in shared_progress.items():
                         n_done += latest
                         progress.update(task_id, completed=latest, total=totals[task_id])
                     progress.update(task_id_all, completed=n_done, total=len(data))
-                    remaining = len(futures) - sum([future.done() for future in futures])
+                    remaining = len(jobs) - sum(job.done() for job in jobs)
 
                 # Collect results and catch and errors
-                return [future.result() for future in futures]
-
-
-# Note: can't use beartype here
-def _long_task(task_id: int, shared_progress: Dict, data: List[Any]) -> None:
-    for val in data:
-        sleep(1)
-        shared_progress[task_id] += 1
-    return val
+                return [job.result() for job in jobs]
 
 
 if __name__ == '__main__':
+    # Note: can't use beartype on a delegated_task
+    def _long_task(*, task_id: int, shared_progress: DictProxy, data: List[_ItemT]) -> Any:
+        """Example long task."""
+        for _val in data:
+            sleep(1)
+            shared_progress[task_id] += 1
+        return True
+
     # Resolve number of cores or specified maximum
     num_cpus = 4
     try:
-        import psutil
+        import psutil  # pyright: ignore
         num_cpus = psutil.cpu_count(logical=False)
     except Exception as exc:
-        print(exc)
+        print(exc)  # noqa: T201
 
     result = pretty_process(_long_task, data=[*range(50)], num_workers=num_cpus)
-    print(result)
+    print(result)  # noqa: T201

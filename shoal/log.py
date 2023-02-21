@@ -82,7 +82,7 @@ def _log(
     _log_level: int = _DEF_LEVEL,
     is_header: bool = False,
     _is_text: bool = False,
-    **kwargs,
+    **kwargs: Any,
 ) -> None:
     """Default log function."""
     if _this_level < _log_level:
@@ -122,16 +122,16 @@ class _Logger:
 
     # FIXME: Remove after upgrading calcipy
     @beartype
-    def print(self, message: str, **kwargs) -> None:  # noqa: A003
+    def print(self, message: str, **kwargs: Any) -> None:  # noqa: A003
         self.text(message, **kwargs)
 
     # FIXME: Remove after upgrading calcipy
     @beartype
-    def print_debug(self, message: str, **kwargs) -> None:
+    def print_debug(self, message: str, **kwargs: Any) -> None:
         self.text_debug(message, **kwargs)
 
     @beartype
-    def text(self, message: str, *, is_header: bool = False, **kwargs) -> None:
+    def text(self, message: str, *, is_header: bool = False, **kwargs: Any) -> None:
         """Print the content without a leading timestamp.
 
         If writing to a file or not natively supported by the logger, will appear in the logs as level info.
@@ -140,28 +140,28 @@ class _Logger:
         self.info(message, **{'_is_text': True, 'is_header': is_header, **kwargs})
 
     @beartype
-    def text_debug(self, message: str, *, is_header: bool = False, **kwargs) -> None:
+    def text_debug(self, message: str, *, is_header: bool = False, **kwargs: Any) -> None:
         """Variation on text that will appear as a debug log if not supported."""
         self.debug(message, **{'_is_text': True, 'is_header': is_header, **kwargs})
 
     @beartype
-    def debug(self, message: str, **kwargs) -> None:
+    def debug(self, message: str, **kwargs: Any) -> None:
         _LOG_SINGLETON.log(message, _this_level=logging.DEBUG, **kwargs)
 
     @beartype
-    def info(self, message: str, **kwargs) -> None:
+    def info(self, message: str, **kwargs: Any) -> None:
         _LOG_SINGLETON.log(message, _this_level=logging.INFO, **kwargs)
 
     @beartype
-    def warning(self, message: str, **kwargs) -> None:
+    def warning(self, message: str, **kwargs: Any) -> None:
         _LOG_SINGLETON.log(message, _this_level=logging.WARNING, **kwargs)
 
     @beartype
-    def error(self, message: str, **kwargs) -> None:
+    def error(self, message: str, **kwargs: Any) -> None:
         _LOG_SINGLETON.log(message, _this_level=logging.ERROR, **kwargs)
 
     @beartype
-    def exception(self, message: str, **kwargs) -> None:
+    def exception(self, message: str, **kwargs: Any) -> None:
         _LOG_SINGLETON.log(message, _this_level=logging.CRITICAL, **kwargs)
 
 

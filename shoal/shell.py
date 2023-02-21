@@ -57,7 +57,7 @@ def capture_shell(
             else:
                 return_code = proc.poll()
 
-    output = ''.join(lines)  # type: ignore[unreachable]
+    output = ''.join(lines)  # type: ignore[arg-type]
     if return_code != 0:
         raise subprocess.CalledProcessError(returncode=return_code or 404, cmd=cmd, output=output)
     return output

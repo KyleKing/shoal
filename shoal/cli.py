@@ -33,7 +33,7 @@ class GlobalTaskOptions(BaseModel):
     """Verbosity level."""
 
 
-class _ShoalProgram(Program):
+class _ShoalProgram(Program):  # type: ignore[misc]
     """Customized version of Invoke's `Program`."""
 
     def print_help(self) -> None:
@@ -53,11 +53,11 @@ class _ShoalProgram(Program):
         print('')  # noqa: T201
 
 
-class ShoalConfig(Config):
+class ShoalConfig(Config):  # type: ignore[misc]
     """Opinionated Config with better defaults."""
 
     @staticmethod
-    def global_defaults() -> Dict:
+    def global_defaults() -> Dict:  # type: ignore[type-arg]
         """Override the global defaults."""
         invoke_defaults = Config.global_defaults()
         shoal_defaults = {
@@ -68,7 +68,7 @@ class ShoalConfig(Config):
                 'pty': use_pty(),
             },
         }
-        return merge_dicts(invoke_defaults, shoal_defaults)
+        return merge_dicts(invoke_defaults, shoal_defaults)  # type: ignore[no-any-return]
 
 
 @beartype
@@ -112,15 +112,15 @@ def start_program(pkg_name: str, pkg_version: str, module: ModuleType) -> None:
 
 
 @beartype
-def task(*task_args, **task_kwargs) -> Callable[[Any], Task]:
+def task(*task_args: Any, **task_kwargs: Any) -> Callable[[Any], Task]:
     """Wrapper to accept arguments for an invoke task."""
     @beartype
-    def wrapper(func) -> Task:  # noqa: ANN001
+    def wrapper(func: Any) -> Task:  # noqa: ANN001
         """Wraps the decorated task."""
-        @invoke_task(*task_args, **task_kwargs)
+        @invoke_task(*task_args, **task_kwargs)  # type: ignore[misc]
         @beartype
         @wraps(func)
-        def inner(ctx: Context, *args, **kwargs) -> Task:
+        def inner(ctx: Context, *args: Any, **kwargs: Any) -> Task:
             """Wrap the task with settings configured in `gto` for working_dir and logging."""
             try:
                 ctx.config.gto

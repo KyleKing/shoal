@@ -12,8 +12,8 @@ from time import sleep
 from typing import runtime_checkable
 
 from beartype import beartype
-from beartype.typing import Any, List, Protocol, TypeVar
-from rich.progress import BarColumn, Progress, TimeElapsedColumn, TimeRemainingColumn
+from beartype.typing import Any, List, Protocol, TypeVar, Union
+from rich.progress import BarColumn, Progress, ProgressColumn, TimeElapsedColumn, TimeRemainingColumn
 
 _ItemT = TypeVar('_ItemT', bound=Any)
 """Iterated item in the data."""
@@ -23,7 +23,13 @@ _ItemT = TypeVar('_ItemT', bound=Any)
 class _DelegatedTask(Protocol):
     """Defined the kwargs accepted for a delegated task."""
 
-    def __call__(self, *, task_id: int, shared_progress: DictProxy, data: List[_ItemT]) -> Any:
+    def __call__(
+        self,
+        *,
+        task_id: int,
+        shared_progress: DictProxy,  # type: ignore[type-arg]
+        data: List[_ItemT],
+    ) -> Any:
         ...
 
 
@@ -53,7 +59,7 @@ def pretty_process(delegated_task: _DelegatedTask, *, data: List[_ItemT], num_wo
 
     """
     # Docs: https://rich.readthedocs.io/en/latest/progress.html
-    columns = [
+    columns: List[Union[str, ProgressColumn]] = [
         '[progress.description]{task.description}',
         BarColumn(),
         '[progress.percentage]{task.percentage:>3.0f}%',
@@ -91,14 +97,17 @@ def pretty_process(delegated_task: _DelegatedTask, *, data: List[_ItemT], num_wo
                 return [job.result() for job in jobs]
 
 
+# Note: can't use beartype on a delegated_task & this function can't be in the if-block below
+def __long_task(*, task_id: int, shared_progress: DictProxy, data: List[_ItemT]) -> Any:  # type: ignore[type-arg]
+    """Example long task."""
+    for _val in data:
+        sleep(1)
+        shared_progress[task_id] += 1
+    return True
+
+
 if __name__ == '__main__':
-    # Note: can't use beartype on a delegated_task
-    def _long_task(*, task_id: int, shared_progress: DictProxy, data: List[_ItemT]) -> Any:
-        """Example long task."""
-        for _val in data:
-            sleep(1)
-            shared_progress[task_id] += 1
-        return True
+    # Run demo with: 'poetry run python -m shoal.pretty_process'
 
     # Resolve number of cores or specified maximum
     num_cpus = 4
@@ -108,5 +117,5 @@ if __name__ == '__main__':
     except Exception as exc:
         print(exc)  # noqa: T201
 
-    result = pretty_process(_long_task, data=[*range(50)], num_workers=num_cpus)
+    result = pretty_process(__long_task, data=[*range(23)], num_workers=num_cpus)
     print(result)  # noqa: T201

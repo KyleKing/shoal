@@ -6,6 +6,7 @@ from functools import lru_cache
 from os import environ
 
 from beartype import beartype
+from beartype.typing import Any
 from invoke import Context, Result
 
 
@@ -19,7 +20,7 @@ def use_pty() -> bool:
 
 
 @beartype
-def run(ctx: Context, *run_args, **run_kwargs) -> Result:
+def run(ctx: Context, *run_args: Any, **run_kwargs: Any) -> Result:
     """Wrap invoke.run to run within the `working_dir`."""
     working_dir = '.'
     with suppress(AttributeError):

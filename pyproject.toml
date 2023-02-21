@@ -47,5 +47,3 @@ pytest-subprocess = ">=1.4.1"
 [tool.pyright]
 include = ["shoal"]
 pythonVersion = "3.8"
-venv = ".venv"
-venvPath = "."

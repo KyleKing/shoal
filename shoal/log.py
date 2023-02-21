@@ -120,6 +120,16 @@ _LOG_SINGLETON = _LogSingleton(log=partial(_log, _console=Console()))
 
 class _Logger:
 
+    # FIXME: Remove after upgrading calcipy
+    @beartype
+    def print(self, message: str, **kwargs) -> None:  # noqa: A003
+        self.text(message, **kwargs)
+
+    # FIXME: Remove after upgrading calcipy
+    @beartype
+    def print_debug(self, message: str, **kwargs) -> None:
+        self.text_debug(message, **kwargs)
+
     @beartype
     def text(self, message: str, *, is_header: bool = False, **kwargs) -> None:
         """Print the content without a leading timestamp.

@@ -64,7 +64,7 @@ def capture_shell(
 
 
 @beartype
-def shell(cmd: str, *, timeout: int = 120, cwd: Optional[Path] = None) -> None:
+def run_shell(cmd: str, *, timeout: int = 120, cwd: Optional[Path] = None) -> None:
     """Run shell command with buffering output.
 
     Args:

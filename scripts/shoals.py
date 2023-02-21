@@ -17,23 +17,21 @@ import json
 import subprocess  # noqa: S404  # nosec
 
 from beartype import beartype
-from beartype.typing import List
 
-from shoal import capture_shell, register_fun, shell, shoalling, get_logger
+from shoal.log import get_logger
+from shoal.shell import capture_shell, run_shell
 
 logger = get_logger()
 
 
 @beartype
-def test_jq(argv: List[str]) -> None:
-    """Example Tang to run jq."""
-    logger.info(f'Running with argv={argv}')
-
-    jq = 'jq'
+def test_jq() -> None:
+    """Example to run jq."""
+    jq = 'gojq'
     try:
         capture_shell(f'{jq} --help')
     except subprocess.CalledProcessError:
-        jq = 'gojq'  # Fallback to jq
+        jq = 'jq'  # Fallback to jq
         capture_shell(f'{jq} --help')
 
     # Then show the output with or without color
@@ -41,10 +39,7 @@ def test_jq(argv: List[str]) -> None:
     data = {value: value * 1_000 for value in range(3)}
     capture_shell(f"echo '{json.dumps(data)}' | {jq}", printer=print)
     logger.info('With ANSII Color codes:')
-    shell(f"echo '{json.dumps(data)}' | {jq}")
+    run_shell(f"echo '{json.dumps(data)}' | {jq}")
 
 
-# Assemble each Tang
-register_fun(test_jq)
-
-shoalling()
+test_jq()

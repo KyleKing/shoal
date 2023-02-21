@@ -8,11 +8,11 @@ Opinionated CLI Task Runner built on Invoke
 
 1. ...
 
-   ```sh
-   import 
+    ```sh
+    import
 
-   # < TODO: Add example code here >
-   ```
+    # < TODO: Add example code here >
+    ```
 
 1. ...
 

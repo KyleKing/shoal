@@ -44,5 +44,16 @@ poetry config pypi-token.pypi ...
 ## Current Status
 
 <!-- {cts} COVERAGE -->
+| File                      |   Statements |   Missing |   Excluded | Coverage   |
+|---------------------------|--------------|-----------|------------|------------|
+| `shoal/__init__.py`       |            7 |         0 |          0 | 100.0%     |
+| `shoal/can_skip.py`       |           19 |         3 |          0 | 84.2%      |
+| `shoal/cli.py`            |           80 |        80 |          0 | 0.0%       |
+| `shoal/invoke_helpers.py` |           20 |        20 |          0 | 0.0%       |
+| `shoal/log.py`            |           85 |        20 |          0 | 76.5%      |
+| `shoal/pretty_process.py` |           59 |        59 |          0 | 0.0%       |
+| `shoal/shell.py`          |           34 |         5 |          0 | 85.3%      |
+| **Totals**                |          304 |       187 |          0 | 38.5%      |
 
+Generated on: 2023-02-21
 <!-- {cte} -->

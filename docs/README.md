@@ -1,55 +1,26 @@
 # shoal
 
-Python function and shell command task runner. Alternative to `make`, [`just`](https://github.com/casey/just), [`doit`](https://github.com/pydoit/doit), and [`invoke`](https://pypi.org/project/invoke). Used in [`calcipy`](https://pypi.org/project/calcipy)
+Opinionated CLI Task Runner built on Invoke
 
 ## Installation
 
-`poetry add shoal`
+1. `poetry add `
+
+1. ...
+
+    ```sh
+    import
+
+    # < TODO: Add example code here >
+    ```
+
+1. ...
 
 ## Usage
 
-There are two ways to use `shoal`, either as a way to organize a set of local tasks or to distribute with a package.
+<!-- < TODO: Show an example (screenshots, terminal recording, etc.) > -->
 
 For more example code, see the [scripts] directory or the [tests].
-
-### Local Runner
-
-Create a `shoals.py` file with:
-
-```py
-from shoal import shoalling
-
-shoalling()
-```
-
-Then run the file with:
-
-```sh
-poetry run python shoals.py --task-help
-```
-
-Add additional tasks or import tasks from a third party package (such as [`calcipy`](https://pypi.org/project/calcipy))
-
-### Package
-
-Create a `<package>/shoals.py` file with:
-
-```py
-from shoal import shoalling  # noqa: F401
-```
-
-Add the file to your `pyproject.toml` scripts:
-
-```toml
-[tool.poetry.scripts]
-shoal = "shoal:shoalling"
-```
-
-Then test with:
-
-```sh
-poetry run shoal --task-help
-```
 
 ## Project Status
 

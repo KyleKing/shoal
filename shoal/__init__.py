@@ -1,18 +1,15 @@
 """shoal."""
 
-from warnings import filterwarnings
-
-from beartype.roar import BeartypeDecorHintPep585DeprecationWarning
-
-__version__ = '0.2.0'
+__version__ = '1.0.0rc0'
 __pkg_name__ = 'shoal'
 
 # ====== Above is the recommended code from calcipy_template and may be updated on new releases ======
 
-# FYI: https://github.com/beartype/beartype#are-we-on-the-worst-timeline
-filterwarnings('ignore', category=BeartypeDecorHintPep585DeprecationWarning)
+from os import environ
+from warnings import filterwarnings
 
-from ._shoalling import shoalling  # noqa: E402,E408
-from ._log import get_logger  # noqa: E402,E408
-from ._shell import capture_shell, shell  # noqa: E402,E408
-from ._tangs import register_fun  # noqa: E402,E408
+from beartype.roar import BeartypeDecorHintPep585DeprecationWarning
+
+if not environ.get('BEARTYPE_SHOW_WARNINGS'):
+    # FYI: https://github.com/beartype/beartype#are-we-on-the-worst-timeline
+    filterwarnings('ignore', category=BeartypeDecorHintPep585DeprecationWarning)

@@ -1,14 +1,7 @@
 """shoal demo.
 
 ```sh
-# See all tangs
-poetry run python scripts/shoals.py --task-help
-
-# Run the Tang
-poetry run python scripts/shoals.py test-jq
-
-# Optionally pass path arguments through 'argv'
-poetry run python scripts/shoals.py test-jq scripts/shoals.py README.md
+poetry run python scripts/shoals.py
 ```
 
 """

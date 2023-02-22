@@ -2,19 +2,16 @@
 
 Opinionated CLI Task Runner built on Invoke
 
+> NOTE:
+>
+> This package has been archived in favor of `calcipy` and `corallium`. Please see [calcipy for the latest information](https://github.com/KyleKing/calcipy)
+
+______________________________________________________________________
+
 ## Installation
 
-1. `poetry add `
-
-1. ...
-
-    ```sh
-    import
-
-    # < TODO: Add example code here >
-    ```
-
-1. ...
+1. `copier copy gh:KyleKing/calcipy_template .`
+1. `poetry add shoal`
 
 ## Usage
 

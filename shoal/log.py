@@ -98,7 +98,7 @@ def _log(
         text.append(f' {message}', style=_STYLES.message)
     for key, value in kwargs.items():
         text.append(f' {key}:', style=_STYLES.key)
-        text.append(f' {str(value): <10}', style=_STYLES.value)
+        text.append(f' {value!s: <10}', style=_STYLES.value)
     _console.print(text)
 
     if _this_level == logging.CRITICAL:

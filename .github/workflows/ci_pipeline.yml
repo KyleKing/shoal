@@ -9,7 +9,11 @@ on: # yamllint disable-line rule:truthy
     paths:
       - shoal/**
       - tests/**
+      - poetry.lock
       - pyproject.toml
+
+env:
+  COLUMNS: 120
 
 jobs:
   lint:
@@ -60,4 +64,7 @@ jobs:
       - name: Run typecheck
         run: ./run types.mypy
 
+      # Based on: https://github.com/jakebailey/pyright-action/issues/10#issuecomment-1455220629
+      - name: Add Poetry Python to Path
+        run: echo "$(poetry env info --path)/bin" >> $GITHUB_PATH
       - uses: jakebailey/pyright-action@v1

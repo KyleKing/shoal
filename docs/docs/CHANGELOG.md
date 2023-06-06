@@ -1,5 +1,11 @@
 ## Unreleased
 
+### Fix
+
+- final commit. Moving all logic into calcipy
+
+## 1.0.0rc0 (2023-02-21)
+
 ### Feat
 
 - add type annotations and fix linting issues
@@ -14,6 +20,7 @@
 
 ### Refactor
 
+- rename shell( to run_shell( and update docs
 - resolve type errors
 
 ## 0.6.0 (2023-02-20)

@@ -19,7 +19,7 @@ classifiers = [
 ] # https://pypi.org/classifiers/
 description = "Opinionated CLI Task Runner built on Invoke"
 documentation = "https://shoal.kyleking.me"
-include = ["LICENSE.md"]
+include = ["LICENSE"]
 keywords = []
 license = "MIT"
 maintainers = []
@@ -30,10 +30,10 @@ version = "1.0.0"
 
 [tool.poetry.dependencies]
 python = "^3.8.12"
-invoke = ">=2.0.0"
+corallium = ">=0.2.2"
 
 [tool.poetry.group.dev.dependencies]
-calcipy = {extras = ["doc", "lint", "nox", "stale", "tags", "test", "types"], version = ">=1.0.0rc1"}
+calcipy = {extras = ["doc", "lint", "nox", "stale", "tags", "test", "types"], version = ">=1.2.1"}
 pytest-subprocess = ">=1.4.1"
 
 [tool.poetry.urls]

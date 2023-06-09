@@ -17,7 +17,7 @@ classifiers = [
   "Programming Language :: Python :: 3.8",
   "Programming Language :: Python :: 3.9",
 ] # https://pypi.org/classifiers/
-description = "Opinionated CLI Task Runner built on Invoke"
+description = "Experimental tasks that extends calcipy's functionality"
 documentation = "https://shoal.kyleking.me"
 include = ["LICENSE"]
 keywords = []
@@ -29,12 +29,14 @@ repository = "https://github.com/kyleking/shoal"
 version = "1.0.0"
 
 [tool.poetry.dependencies]
-python = "^3.8.12"
+python = "^3.11.2"
 corallium = ">=0.2.2"
 
 [tool.poetry.group.dev.dependencies]
 calcipy = {extras = ["doc", "lint", "nox", "stale", "tags", "test", "types"], version = ">=1.2.1"}
-pytest-subprocess = ">=1.4.1"
+
+[tool.poetry.scripts]
+shoal = "shoal.scripts:start"
 
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/kyleking/shoal/issues"
@@ -42,4 +44,4 @@ pytest-subprocess = ">=1.4.1"
 
 [tool.pyright]
 include = ["shoal"]
-pythonVersion = "3.8"
+pythonVersion = "3.11"

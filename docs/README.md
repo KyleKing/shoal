@@ -1,17 +1,11 @@
 # shoal
 
-Opinionated CLI Task Runner built on Invoke
-
-> NOTE:
->
-> This package has been archived in favor of `calcipy` and `corallium`. Please see [calcipy for the latest information](https://github.com/KyleKing/calcipy)
-
----
+Experimental tasks that extends `calcipy`'s functionality
 
 ## Installation
 
-1. `copier copy gh:KyleKing/calcipy_template .`
-1. `poetry add shoal`
+1. `pipx install shoal`
+1. `shoal --help`
 
 ## Usage
 

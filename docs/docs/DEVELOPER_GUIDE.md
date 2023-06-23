@@ -55,9 +55,9 @@ poetry config pypi-token.pypi ...
 | `shoal/dev_boards/merge/gh_wrapper.py` |           59 |        59 |          0 | 0.0%       |
 | `shoal/dev_boards/scripts.py`          |            4 |         4 |          4 | 0.0%       |
 | `shoal/dev_boards/tasks/__init__.py`   |            0 |         0 |          0 | 100.0%     |
-| `shoal/dev_boards/tasks/all_tasks.py`  |            7 |         7 |          0 | 0.0%       |
+| `shoal/dev_boards/tasks/all_tasks.py`  |            8 |         8 |          0 | 0.0%       |
 | `shoal/scripts.py`                     |            7 |         7 |          0 | 0.0%       |
-| **Totals**                             |          172 |       170 |          5 | 0.9%       |
+| **Totals**                             |          173 |       171 |          5 | 0.9%       |
 
 Generated on: 2023-06-23
 <!-- {cte} -->

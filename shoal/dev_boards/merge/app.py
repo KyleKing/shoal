@@ -67,7 +67,7 @@ class PRsDataTable(DataTable):  # type: ignore[type-arg]
 
     _columns = PRColumns
 
-    BINDINGS: ClassVar[list[Binding]] = [
+    BINDINGS: ClassVar[list[Binding]] = [  # type: ignore[assignment]
         Binding('r', 'refresh_rows', 'Refresh Data'),
         Binding('o', 'open_selected_pr', 'Open in Browser'),
         Binding('m', 'merge_selected_pr', 'Merge'),
@@ -111,7 +111,7 @@ class MergeApp(App):  # type: ignore[type-arg]
 
     TITLE = 'GitOps: Merge UI'
 
-    BINDINGS: ClassVar[list[Binding]] = [
+    BINDINGS: ClassVar[list[Binding]] = [  # type: ignore[assignment]
         Binding('q', 'quit', 'Quit'),
         Binding('`', 'toggle_text_log', 'Toggle Debug Log'),
         # PLANNED: Add question mark for a help menu

@@ -1,6 +1,6 @@
 # shoal
 
-Experimental tasks that extends `calcipy`'s functionality
+Experimental tasks that extends calcipy's functionality
 
 ## Installation
 

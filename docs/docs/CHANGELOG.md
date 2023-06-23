@@ -7,6 +7,7 @@
 
 ### Fix
 
+- resolve issues post-merge of dev-boards
 - final commit. Moving all logic into calcipy
 
 ## 1.0.0rc0 (2023-02-21)

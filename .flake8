@@ -8,6 +8,8 @@ max-function-length = 55
 max-line-length = 120
 min-python-version = 3.11
 per-file-ignores=
+    # @beartype should work at the class level
+    */app.py:RBT002,
     # Enforcing beartype on @nox_session doesn't make sense
     *noxfile.py:RBT001,
     __init__.py:F401,

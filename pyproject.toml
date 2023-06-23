@@ -29,13 +29,17 @@ repository = "https://github.com/kyleking/shoal"
 version = "1.0.0"
 
 [tool.poetry.dependencies]
-python = "^3.11.2"
-corallium = ">=0.2.2"
+python = ">=3.11.2,<3.12"
+corallium = ">=0.3.0"
+pandera = ">=0.15.1"
+textual = ">=0.28.1"
 
 [tool.poetry.group.dev.dependencies]
-calcipy = {extras = ["doc", "lint", "nox", "stale", "tags", "test", "types"], version = ">=1.2.1"}
+calcipy = {extras = ["doc", "lint", "nox", "stale", "tags", "test", "types"], version = ">=1.3.0"}
 
 [tool.poetry.scripts]
+brds = "dev_boards.scripts:start"
+dev-boards = "dev_boards.scripts:start"
 shoal = "shoal.scripts:start"
 
 [tool.poetry.urls]

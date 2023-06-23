@@ -50,6 +50,9 @@ known-first-party = ['shoal']
   'D104', # Missing docstring in public package
   'F401', # imported but unused; consider adding to __all__ or using a redundant alias
 ]
+'*/app.py' = [
+  'D102', # Missing docstring in public method
+]
 'scripts/*.py' = [
   'INP001', # File `scripts/*.py` is part of an implicit namespace package. Add an `__init__.py`.
 ]

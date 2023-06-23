@@ -2,9 +2,9 @@
 
 import logging
 from itertools import cycle
+from typing import Any, ClassVar
 
 from beartype import beartype
-from beartype.typing import Any
 from corallium.log import configure_logger
 from textual.app import App, ComposeResult
 from textual.binding import Binding
@@ -67,7 +67,7 @@ class PRsDataTable(DataTable):  # type: ignore[type-arg]
 
     _columns = PRColumns
 
-    BINDINGS = [
+    BINDINGS: ClassVar[list[Binding]] = [
         Binding('r', 'refresh_rows', 'Refresh Data'),
         Binding('o', 'open_selected_pr', 'Open in Browser'),
         Binding('m', 'merge_selected_pr', 'Merge'),
@@ -78,7 +78,7 @@ class PRsDataTable(DataTable):  # type: ignore[type-arg]
 
     def _get_selected_row(self) -> dict:  # type: ignore[type-arg]
         row = self.get_row_at(self.cursor_coordinate.row)
-        return dict(zip(self._columns, row))
+        return dict(zip(self._columns, row, strict=True))
 
     async def on_mount(self) -> None:
         super().on_mount()  # type: ignore[no-untyped-call]
@@ -111,7 +111,7 @@ class MergeApp(App):  # type: ignore[type-arg]
 
     TITLE = 'GitOps: Merge UI'
 
-    BINDINGS = [
+    BINDINGS: ClassVar[list[Binding]] = [
         Binding('q', 'quit', 'Quit'),
         Binding('`', 'toggle_text_log', 'Toggle Debug Log'),
         # PLANNED: Add question mark for a help menu

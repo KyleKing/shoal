@@ -14,8 +14,8 @@ from invoke.program import Program
 def start_program(  # pragma: no cover
     pkg_name: str,
     pkg_version: str,
-    module: Optional[ModuleType] = None,
-    collection: Optional[Collection] = None,
+    module: Optional[ModuleType] | None = None,
+    collection: Optional[Collection] | None = None,
 ) -> None:
     """Run the customized Invoke Program."""
     Program(

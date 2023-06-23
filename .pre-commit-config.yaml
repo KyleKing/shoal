@@ -41,7 +41,7 @@ repos:
         args: [--fix=auto]
       - id: trailing-whitespace
   - repo: https://github.com/commitizen-tools/commitizen
-    rev: 3.4.0
+    rev: 3.5.0
     hooks:
       - id: commitizen
   - repo: https://github.com/executablebooks/mdformat

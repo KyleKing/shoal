@@ -1,12 +1,15 @@
 # Collected Code Tags
 
-| Type    | Comment                                                       | Last Edit   | Source File                                                                                                                                |
-|---------|---------------------------------------------------------------|-------------|--------------------------------------------------------------------------------------------------------------------------------------------|
-| TODO    | Show an example (screenshots, terminal recording, etc.) > --> | 2023-02-20  | [docs/README.md:18](https://github.com/kyleking/shoal/blame/02dc1fedb6105ce7642ff45bfe92662fbf6a2624/docs/README.md#L21)                   |
-| FIXME   | Handle poetry install when shoal is recursively required...   | 2023-02-22  | [noxfile.py:3](https://github.com/kyleking/shoal/blame/1e96ce8da3b36976d078ad4c58c0afc6f092007b/noxfile.py#L3)                             |
-| PLANNED | When can this be True?                                        | 2023-02-21  | [shoal/cli.py:65](https://github.com/kyleking/shoal/blame/dc5070ab8dee8241d28897b0cdea287d9e84d305/shoal/cli.py#L65)                       |
-| TODO    | See below link for other options for chunking                 | 2023-02-17  | [shoal/pretty_process.py:39](https://github.com/kyleking/shoal/blame/3c36ca74ee07faadc3e05042ad446fa73a91bc1e/shoal/pretty_process.py#L18) |
+| Type    | Comment                                                       | Last Edit   | Source File                                                                                                                                                    |
+|---------|---------------------------------------------------------------|-------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| TODO    | Show an example (screenshots, terminal recording, etc.) > --> | 2023-02-20  | [docs/README.md:12](https://github.com/kyleking/shoal/blame/02dc1fedb6105ce7642ff45bfe92662fbf6a2624/docs/README.md#L21)                                       |
+| TODO    | Implement -->                                                 | 2023-06-23  | [shoal/dev_boards/actions/README.md:5](https://github.com/kyleking/shoal/blame/8c36d2ef6474fbfae6dfb8285e462e8b2a59018d/shoal/dev_boards/actions/README.md#L5) |
+| PLANNED | Reduce the non-gh-ops output from Invoke                      | 2023-06-23  | [shoal/dev_boards/cli.py:11](https://github.com/kyleking/shoal/blame/8c36d2ef6474fbfae6dfb8285e462e8b2a59018d/shoal/dev_boards/cli.py#L11)                     |
+| FIXME   | Rename to more general 'GitOps UI'?                           | 2023-06-23  | [shoal/dev_boards/merge/__init__.py:1](https://github.com/kyleking/shoal/blame/8c36d2ef6474fbfae6dfb8285e462e8b2a59018d/shoal/dev_boards/merge/__init__.py#L1) |
+| FIXME   | move to screens/widgets                                       | 2023-06-23  | [shoal/dev_boards/merge/__init__.py:2](https://github.com/kyleking/shoal/blame/8c36d2ef6474fbfae6dfb8285e462e8b2a59018d/shoal/dev_boards/merge/__init__.py#L2) |
+| TODO    | Add a Settings page                                           | 2023-06-23  | [shoal/dev_boards/merge/__init__.py:3](https://github.com/kyleking/shoal/blame/8c36d2ef6474fbfae6dfb8285e462e8b2a59018d/shoal/dev_boards/merge/__init__.py#L3) |
+| PLANNED | Add question mark for a help menu                             | 2023-06-23  | [shoal/dev_boards/merge/app.py:117](https://github.com/kyleking/shoal/blame/8c36d2ef6474fbfae6dfb8285e462e8b2a59018d/shoal/dev_boards/merge/app.py#L117)       |
 
-Found code tags for FIXME (1), TODO (2), PLANNED (1)
+Found code tags for FIXME (2), TODO (3), PLANNED (2)
 
 <!-- calcipy_skip_tags -->

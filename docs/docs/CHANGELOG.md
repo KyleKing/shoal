@@ -1,5 +1,10 @@
 ## Unreleased
 
+### Feat
+
+- absorb the gh-ops/dev-boards repository code
+- clear out legacy shoal code
+
 ### Fix
 
 - final commit. Moving all logic into calcipy

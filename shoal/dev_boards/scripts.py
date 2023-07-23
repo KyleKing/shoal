@@ -1,6 +1,5 @@
 """Start the command line program."""
 
-
 from beartype import beartype
 
 from . import __pkg_name__, __version__

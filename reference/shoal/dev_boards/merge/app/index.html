@@ -21,7 +21,7 @@
         <link rel="next" href="../config/">
       
       <link rel="icon" href="../../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.15">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.19">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.26e3688c.min.css">
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.eebd395e.min.css">
       
         
         <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.ecc896b0.min.css">
@@ -952,23 +952,22 @@
 
 
 <h3 id="shoal.dev_boards.merge.app.DebugLog" class="doc doc-heading">
-        <span class="doc doc-object-name doc-class-name">DebugLog</span>
+          <span class="doc doc-object-name doc-class-name">DebugLog</span>
 
 
 <a href="#shoal.dev_boards.merge.app.DebugLog" class="headerlink" title="Permanent link">⚓︎</a></h3>
 
 
   <div class="doc doc-contents ">
-      <p class="doc doc-class-bases">
-        Bases: <code><span title="textual.widgets.TextLog">TextLog</span></code></p>
+          <p class="doc doc-class-bases">
+            Bases: <code><span title="textual.widgets.TextLog">TextLog</span></code></p>
 
   
       <p>Debug log widget.</p>
 
-
-        <details class="quote">
-          <summary>Source code in <code>shoal/dev_boards/merge/app.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="17 "></span><span class="nd">@beartype</span>
+            <details class="quote">
+              <summary>Source code in <code>shoal/dev_boards/merge/app.py</code></summary>
+              <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="17 "></span><span class="nd">@beartype</span>
 <span class="linenos" data-linenos="18 "></span><span class="k">class</span> <span class="nc">DebugLog</span><span class="p">(</span><span class="n">TextLog</span><span class="p">):</span>
 <span class="linenos" data-linenos="19 "></span><span class="w">    </span><span class="sd">&quot;&quot;&quot;Debug log widget.&quot;&quot;&quot;</span>
 <span class="linenos" data-linenos="20 "></span>
@@ -1014,7 +1013,7 @@
 <span class="linenos" data-linenos="60 "></span>        <span class="n">new_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">query_one</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;#</span><span class="si">{</span><span class="n">text_log_id</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">TextLog</span><span class="p">)</span><span class="o">.</span><span class="n">id</span> <span class="k">if</span> <span class="n">text_log_id</span> <span class="k">else</span> <span class="kc">None</span>
 <span class="linenos" data-linenos="61 "></span>        <span class="bp">self</span><span class="o">.</span><span class="n">query_one</span><span class="p">(</span><span class="s1">&#39;#logs&#39;</span><span class="p">,</span> <span class="n">ContentSwitcher</span><span class="p">)</span><span class="o">.</span><span class="n">current</span> <span class="o">=</span> <span class="n">new_id</span>
 </code></pre></div>
-        </details>
+            </details>
 
   
 
@@ -1041,23 +1040,22 @@
 
 
 <h3 id="shoal.dev_boards.merge.app.MergeApp" class="doc doc-heading">
-        <span class="doc doc-object-name doc-class-name">MergeApp</span>
+          <span class="doc doc-object-name doc-class-name">MergeApp</span>
 
 
 <a href="#shoal.dev_boards.merge.app.MergeApp" class="headerlink" title="Permanent link">⚓︎</a></h3>
 
 
   <div class="doc doc-contents ">
-      <p class="doc doc-class-bases">
-        Bases: <code><span title="textual.app.App">App</span></code></p>
+          <p class="doc doc-class-bases">
+            Bases: <code><span title="textual.app.App">App</span></code></p>
 
   
       <p>A Textual Dashboard app for managing PRs.</p>
 
-
-        <details class="quote">
-          <summary>Source code in <code>shoal/dev_boards/merge/app.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="108 "></span><span class="nd">@beartype</span>
+            <details class="quote">
+              <summary>Source code in <code>shoal/dev_boards/merge/app.py</code></summary>
+              <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="108 "></span><span class="nd">@beartype</span>
 <span class="linenos" data-linenos="109 "></span><span class="k">class</span> <span class="nc">MergeApp</span><span class="p">(</span><span class="n">App</span><span class="p">):</span>  <span class="c1"># type: ignore[type-arg]</span>
 <span class="linenos" data-linenos="110 "></span><span class="w">    </span><span class="sd">&quot;&quot;&quot;A Textual Dashboard app for managing PRs.&quot;&quot;&quot;</span>
 <span class="linenos" data-linenos="111 "></span>
@@ -1084,7 +1082,7 @@
 <span class="linenos" data-linenos="132 "></span>    <span class="k">def</span> <span class="nf">action_toggle_text_log</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="linenos" data-linenos="133 "></span>        <span class="bp">self</span><span class="o">.</span><span class="n">query_one</span><span class="p">(</span><span class="n">DebugLog</span><span class="p">)</span><span class="o">.</span><span class="n">action_toggle_text_log</span><span class="p">()</span>
 </code></pre></div>
-        </details>
+            </details>
 
   
 
@@ -1098,12 +1096,13 @@
 
 <h4 id="shoal.dev_boards.merge.app.MergeApp-functions">Functions<a href="#shoal.dev_boards.merge.app.MergeApp-functions" class="headerlink" title="Permanent link">⚓︎</a></h4>
 
+
 <div class="doc doc-object doc-function">
 
 
 
 <h5 id="shoal.dev_boards.merge.app.MergeApp.compose" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">compose</span>
+          <span class="doc doc-object-name doc-function-name">compose</span>
 
 
 <a href="#shoal.dev_boards.merge.app.MergeApp.compose" class="headerlink" title="Permanent link">⚓︎</a></h5>
@@ -1114,9 +1113,9 @@
   
       <p>Called to add widgets to the app.</p>
 
-      <details class="quote">
-        <summary>Source code in <code>shoal/dev_boards/merge/app.py</code></summary>
-        <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="120 "></span><span class="k">def</span> <span class="nf">compose</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ComposeResult</span><span class="p">:</span>
+          <details class="quote">
+            <summary>Source code in <code>shoal/dev_boards/merge/app.py</code></summary>
+            <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="120 "></span><span class="k">def</span> <span class="nf">compose</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ComposeResult</span><span class="p">:</span>
 <span class="linenos" data-linenos="121 "></span><span class="w">    </span><span class="sd">&quot;&quot;&quot;Called to add widgets to the app.&quot;&quot;&quot;</span>
 <span class="linenos" data-linenos="122 "></span>    <span class="n">header</span> <span class="o">=</span> <span class="n">Header</span><span class="p">()</span>
 <span class="linenos" data-linenos="123 "></span>    <span class="n">header</span><span class="o">.</span><span class="n">tall</span> <span class="o">=</span> <span class="kc">True</span>
@@ -1125,7 +1124,7 @@
 <span class="linenos" data-linenos="126 "></span>    <span class="k">yield</span> <span class="n">PRsDataTable</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;datatable&#39;</span><span class="p">)</span>
 <span class="linenos" data-linenos="127 "></span>    <span class="k">yield</span> <span class="n">DebugLog</span><span class="p">()</span>
 </code></pre></div>
-      </details>
+          </details>
   </div>
 
 </div>
@@ -1143,23 +1142,22 @@
 
 
 <h3 id="shoal.dev_boards.merge.app.PRsDataTable" class="doc doc-heading">
-        <span class="doc doc-object-name doc-class-name">PRsDataTable</span>
+          <span class="doc doc-object-name doc-class-name">PRsDataTable</span>
 
 
 <a href="#shoal.dev_boards.merge.app.PRsDataTable" class="headerlink" title="Permanent link">⚓︎</a></h3>
 
 
   <div class="doc doc-contents ">
-      <p class="doc doc-class-bases">
-        Bases: <code><span title="textual.widgets.DataTable">DataTable</span></code></p>
+          <p class="doc doc-class-bases">
+            Bases: <code><span title="textual.widgets.DataTable">DataTable</span></code></p>
 
   
       <p>GitHub PRs Table.</p>
 
-
-        <details class="quote">
-          <summary>Source code in <code>shoal/dev_boards/merge/app.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 64 "></span><span class="nd">@beartype</span>
+            <details class="quote">
+              <summary>Source code in <code>shoal/dev_boards/merge/app.py</code></summary>
+              <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 64 "></span><span class="nd">@beartype</span>
 <span class="linenos" data-linenos=" 65 "></span><span class="k">class</span> <span class="nc">PRsDataTable</span><span class="p">(</span><span class="n">DataTable</span><span class="p">):</span>  <span class="c1"># type: ignore[type-arg]</span>
 <span class="linenos" data-linenos=" 66 "></span><span class="w">    </span><span class="sd">&quot;&quot;&quot;GitHub PRs Table.&quot;&quot;&quot;</span>
 <span class="linenos" data-linenos=" 67 "></span>
@@ -1202,7 +1200,7 @@
 <span class="linenos" data-linenos="104 "></span>        <span class="n">row_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_selected_row</span><span class="p">()</span>
 <span class="linenos" data-linenos="105 "></span>        <span class="k">await</span> <span class="n">merge_pr</span><span class="p">(</span><span class="n">repository</span><span class="o">=</span><span class="n">row_data</span><span class="p">[</span><span class="n">PRsSchema</span><span class="o">.</span><span class="n">repository</span><span class="p">],</span> <span class="n">pr_id</span><span class="o">=</span><span class="n">row_data</span><span class="p">[</span><span class="n">PRsSchema</span><span class="o">.</span><span class="n">number</span><span class="p">],</span> <span class="n">use_squash</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </code></pre></div>
-        </details>
+            </details>
 
   
 
@@ -1238,11 +1236,11 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 23, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 23, 2023</span>
       
         <br>
         Created:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 23, 2023</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 23, 2023</span>
       
     
   </small>
@@ -1284,14 +1282,18 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../../../..", "features": ["toc.autohide"], "search": "../../../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../../..", "features": ["toc.autohide"], "search": "../../../../../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../../../../assets/javascripts/bundle.b4d07000.min.js"></script>
+      <script src="../../../../../assets/javascripts/bundle.220ee61c.min.js"></script>
       
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+        
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+        
       
-        <script src="../../../../../_javascript/tables.js"></script>
+        
+          <script src="../../../../../_javascript/tables.js"></script>
+        
       
     
   </body>

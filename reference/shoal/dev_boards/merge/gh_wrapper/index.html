@@ -21,7 +21,7 @@
         <link rel="next" href="../../scripts/">
       
       <link rel="icon" href="../../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.15">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.19">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.26e3688c.min.css">
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.eebd395e.min.css">
       
         
         <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.ecc896b0.min.css">
@@ -1003,7 +1003,7 @@
 
 
 <h3 id="shoal.dev_boards.merge.gh_wrapper.PRColumns" class="doc doc-heading">
-        <span class="doc doc-object-name doc-attribute-name">PRColumns</span>
+          <span class="doc doc-object-name doc-attribute-name">PRColumns</span>
 
   
   <span class="doc doc-labels">
@@ -1011,7 +1011,7 @@
   </span>
 
 <a href="#shoal.dev_boards.merge.gh_wrapper.PRColumns" class="headerlink" title="Permanent link">⚓︎</a></h3>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">PRColumns</span> <span class="o">=</span> <span class="p">[</span><span class="n">PRsSchema</span><span class="o">.</span><span class="n">_collect_fields</span><span class="p">()]</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">PRColumns</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="n">PRsSchema</span><span class="o">.</span><span class="n">_collect_fields</span><span class="p">()]</span>
 </code></pre></div>
 
   <div class="doc doc-contents ">
@@ -1027,23 +1027,22 @@
 
 
 <h3 id="shoal.dev_boards.merge.gh_wrapper.PRsSchema" class="doc doc-heading">
-        <span class="doc doc-object-name doc-class-name">PRsSchema</span>
+          <span class="doc doc-object-name doc-class-name">PRsSchema</span>
 
 
 <a href="#shoal.dev_boards.merge.gh_wrapper.PRsSchema" class="headerlink" title="Permanent link">⚓︎</a></h3>
 
 
   <div class="doc doc-contents ">
-      <p class="doc doc-class-bases">
-        Bases: <code><span title="pandera">pa</span>.<span title="pandera.SchemaModel">SchemaModel</span></code></p>
+          <p class="doc doc-class-bases">
+            Bases: <code><span title="pandera">pa</span>.<span title="pandera.SchemaModel">SchemaModel</span></code></p>
 
   
       <p>Pandera Schema for the PRs DataFrame.</p>
 
-
-        <details class="quote">
-          <summary>Source code in <code>shoal/dev_boards/merge/gh_wrapper.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="18 "></span><span class="k">class</span> <span class="nc">PRsSchema</span><span class="p">(</span><span class="n">pa</span><span class="o">.</span><span class="n">SchemaModel</span><span class="p">):</span>
+            <details class="quote">
+              <summary>Source code in <code>shoal/dev_boards/merge/gh_wrapper.py</code></summary>
+              <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="18 "></span><span class="k">class</span> <span class="nc">PRsSchema</span><span class="p">(</span><span class="n">pa</span><span class="o">.</span><span class="n">SchemaModel</span><span class="p">):</span>
 <span class="linenos" data-linenos="19 "></span><span class="w">    </span><span class="sd">&quot;&quot;&quot;Pandera Schema for the PRs DataFrame.&quot;&quot;&quot;</span>
 <span class="linenos" data-linenos="20 "></span>
 <span class="linenos" data-linenos="21 "></span>    <span class="n">number</span><span class="p">:</span> <span class="n">Series</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
@@ -1062,7 +1061,7 @@
 <span class="linenos" data-linenos="34 "></span>        <span class="n">strict</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="linenos" data-linenos="35 "></span>        <span class="n">coerce</span> <span class="o">=</span> <span class="kc">True</span>
 </code></pre></div>
-        </details>
+            </details>
 
   
 
@@ -1080,7 +1079,7 @@
 
 
 <h5 id="shoal.dev_boards.merge.gh_wrapper.PRsSchema.Config" class="doc doc-heading">
-        <span class="doc doc-object-name doc-class-name">Config</span>
+          <span class="doc doc-object-name doc-class-name">Config</span>
 
 
 <a href="#shoal.dev_boards.merge.gh_wrapper.PRsSchema.Config" class="headerlink" title="Permanent link">⚓︎</a></h5>
@@ -1091,16 +1090,15 @@
   
       <p>Pandera Config.</p>
 
-
-        <details class="quote">
-          <summary>Source code in <code>shoal/dev_boards/merge/gh_wrapper.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="31 "></span><span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
+            <details class="quote">
+              <summary>Source code in <code>shoal/dev_boards/merge/gh_wrapper.py</code></summary>
+              <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="31 "></span><span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
 <span class="linenos" data-linenos="32 "></span><span class="w">    </span><span class="sd">&quot;&quot;&quot;Pandera Config.&quot;&quot;&quot;</span>
 <span class="linenos" data-linenos="33 "></span>
 <span class="linenos" data-linenos="34 "></span>    <span class="n">strict</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="linenos" data-linenos="35 "></span>    <span class="n">coerce</span> <span class="o">=</span> <span class="kc">True</span>
 </code></pre></div>
-        </details>
+            </details>
 
   
 
@@ -1132,12 +1130,13 @@
 </div>
 <h2 id="shoal.dev_boards.merge.gh_wrapper-functions">Functions<a href="#shoal.dev_boards.merge.gh_wrapper-functions" class="headerlink" title="Permanent link">⚓︎</a></h2>
 
+
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="shoal.dev_boards.merge.gh_wrapper.list_prs" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">list_prs</span>
+          <span class="doc doc-object-name doc-function-name">list_prs</span>
 
   
   <span class="doc doc-labels">
@@ -1152,9 +1151,9 @@
   
       <p>Return a dataframe of all PRs.</p>
 
-      <details class="quote">
-        <summary>Source code in <code>shoal/dev_boards/merge/gh_wrapper.py</code></summary>
-        <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="42 "></span><span class="nd">@beartype</span>
+          <details class="quote">
+            <summary>Source code in <code>shoal/dev_boards/merge/gh_wrapper.py</code></summary>
+            <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="42 "></span><span class="nd">@beartype</span>
 <span class="linenos" data-linenos="43 "></span><span class="nd">@pa</span><span class="o">.</span><span class="n">check_output</span><span class="p">(</span><span class="n">PRsSchema</span><span class="p">)</span>  <span class="c1"># type: ignore[arg-type]</span>
 <span class="linenos" data-linenos="44 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">list_prs</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
 <span class="linenos" data-linenos="45 "></span><span class="w">    </span><span class="sd">&quot;&quot;&quot;Return a dataframe of all PRs.&quot;&quot;&quot;</span>
@@ -1173,17 +1172,18 @@
 <span class="linenos" data-linenos="58 "></span>    <span class="n">df_prs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">records</span><span class="p">)</span>
 <span class="linenos" data-linenos="59 "></span>    <span class="k">return</span> <span class="n">df_prs</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="n">PRsSchema</span><span class="o">.</span><span class="n">updatedAt</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </code></pre></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="shoal.dev_boards.merge.gh_wrapper.merge_pr" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">merge_pr</span>
+          <span class="doc doc-object-name doc-function-name">merge_pr</span>
 
   
   <span class="doc doc-labels">
@@ -1198,25 +1198,26 @@
   
       <p>Merge the PR.</p>
 
-      <details class="quote">
-        <summary>Source code in <code>shoal/dev_boards/merge/gh_wrapper.py</code></summary>
-        <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="79 "></span><span class="nd">@beartype</span>
+          <details class="quote">
+            <summary>Source code in <code>shoal/dev_boards/merge/gh_wrapper.py</code></summary>
+            <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="79 "></span><span class="nd">@beartype</span>
 <span class="linenos" data-linenos="80 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">merge_pr</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">repository</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">pr_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">use_squash</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="linenos" data-linenos="81 "></span><span class="w">    </span><span class="sd">&quot;&quot;&quot;Merge the PR.&quot;&quot;&quot;</span>
 <span class="linenos" data-linenos="82 "></span>    <span class="n">opt_flags</span> <span class="o">=</span> <span class="s1">&#39;--squash&#39;</span> <span class="k">if</span> <span class="n">use_squash</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span>
 <span class="linenos" data-linenos="83 "></span>    <span class="k">return</span> <span class="k">await</span> <span class="n">_safe_cmd</span><span class="p">(</span><span class="n">cmd</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;gh pr merge </span><span class="si">{</span><span class="n">pr_id</span><span class="si">}</span><span class="s2"> --repo=&#39;</span><span class="si">{</span><span class="n">repository</span><span class="si">}</span><span class="s2">&#39; --body=&#39;&#39; </span><span class="si">{</span><span class="n">opt_flags</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="shoal.dev_boards.merge.gh_wrapper.open_pr" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">open_pr</span>
+          <span class="doc doc-object-name doc-function-name">open_pr</span>
 
   
   <span class="doc doc-labels">
@@ -1231,14 +1232,14 @@
   
       <p>Open the PR using the GH CLi.</p>
 
-      <details class="quote">
-        <summary>Source code in <code>shoal/dev_boards/merge/gh_wrapper.py</code></summary>
-        <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="73 "></span><span class="nd">@beartype</span>
+          <details class="quote">
+            <summary>Source code in <code>shoal/dev_boards/merge/gh_wrapper.py</code></summary>
+            <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="73 "></span><span class="nd">@beartype</span>
 <span class="linenos" data-linenos="74 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">open_pr</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">repository</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">pr_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="linenos" data-linenos="75 "></span><span class="w">    </span><span class="sd">&quot;&quot;&quot;Open the PR using the GH CLi.&quot;&quot;&quot;</span>
 <span class="linenos" data-linenos="76 "></span>    <span class="k">return</span> <span class="k">await</span> <span class="n">_safe_cmd</span><span class="p">(</span><span class="n">cmd</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;gh pr view </span><span class="si">{</span><span class="n">pr_id</span><span class="si">}</span><span class="s2"> --repo=&#39;</span><span class="si">{</span><span class="n">repository</span><span class="si">}</span><span class="s2">&#39; --web&quot;</span><span class="p">)</span>
 </code></pre></div>
-      </details>
+          </details>
   </div>
 
 </div>
@@ -1256,11 +1257,11 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 23, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 23, 2023</span>
       
         <br>
         Created:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 23, 2023</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 23, 2023</span>
       
     
   </small>
@@ -1302,14 +1303,18 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../../../..", "features": ["toc.autohide"], "search": "../../../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../../..", "features": ["toc.autohide"], "search": "../../../../../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../../../../assets/javascripts/bundle.b4d07000.min.js"></script>
+      <script src="../../../../../assets/javascripts/bundle.220ee61c.min.js"></script>
       
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+        
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+        
       
-        <script src="../../../../../_javascript/tables.js"></script>
+        
+          <script src="../../../../../_javascript/tables.js"></script>
+        
       
     
   </body>

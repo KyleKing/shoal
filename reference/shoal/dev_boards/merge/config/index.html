@@ -21,7 +21,7 @@
         <link rel="next" href="../gh_wrapper/">
       
       <link rel="icon" href="../../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.15">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.19">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.26e3688c.min.css">
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.eebd395e.min.css">
       
         
         <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.ecc896b0.min.css">
@@ -884,28 +884,27 @@
 
 
 <h3 id="shoal.dev_boards.merge.config.Config" class="doc doc-heading">
-        <span class="doc doc-object-name doc-class-name">Config</span>
+          <span class="doc doc-object-name doc-class-name">Config</span>
 
 
 <a href="#shoal.dev_boards.merge.config.Config" class="headerlink" title="Permanent link">⚓︎</a></h3>
 
 
   <div class="doc doc-contents ">
-      <p class="doc doc-class-bases">
-        Bases: <code><span title="pydantic.BaseModel">BaseModel</span></code></p>
+          <p class="doc doc-class-bases">
+            Bases: <code><span title="pydantic.BaseModel">BaseModel</span></code></p>
 
   
       <p>Merge Config.</p>
 
-
-        <details class="quote">
-          <summary>Source code in <code>shoal/dev_boards/merge/config.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="10 "></span><span class="k">class</span> <span class="nc">Config</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+            <details class="quote">
+              <summary>Source code in <code>shoal/dev_boards/merge/config.py</code></summary>
+              <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="10 "></span><span class="k">class</span> <span class="nc">Config</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 <span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="sd">&quot;&quot;&quot;Merge Config.&quot;&quot;&quot;</span>
 <span class="linenos" data-linenos="12 "></span>
 <span class="linenos" data-linenos="13 "></span>    <span class="n">search_kwargs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
 </code></pre></div>
-        </details>
+            </details>
 
   
 
@@ -928,12 +927,13 @@
 </div>
 <h2 id="shoal.dev_boards.merge.config-functions">Functions<a href="#shoal.dev_boards.merge.config-functions" class="headerlink" title="Permanent link">⚓︎</a></h2>
 
+
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="shoal.dev_boards.merge.config.get_config" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">get_config</span>
+          <span class="doc doc-object-name doc-function-name">get_config</span>
 
   
   <span class="doc doc-labels">
@@ -948,9 +948,9 @@
   
       <p>Load the user configuration data.</p>
 
-      <details class="quote">
-        <summary>Source code in <code>shoal/dev_boards/merge/config.py</code></summary>
-        <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="16 "></span><span class="nd">@lru_cache</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+          <details class="quote">
+            <summary>Source code in <code>shoal/dev_boards/merge/config.py</code></summary>
+            <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="16 "></span><span class="nd">@lru_cache</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="linenos" data-linenos="17 "></span><span class="nd">@beartype</span>
 <span class="linenos" data-linenos="18 "></span><span class="k">def</span> <span class="nf">get_config</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Config</span><span class="p">:</span>
 <span class="linenos" data-linenos="19 "></span><span class="w">    </span><span class="sd">&quot;&quot;&quot;Load the user configuration data.&quot;&quot;&quot;</span>
@@ -958,7 +958,7 @@
 <span class="linenos" data-linenos="21 "></span>        <span class="n">search_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;author&#39;</span><span class="p">:</span> <span class="s1">&#39;@me&#39;</span><span class="p">,</span> <span class="s1">&#39;review&#39;</span><span class="p">:</span> <span class="s1">&#39;approved&#39;</span><span class="p">,</span> <span class="s1">&#39;state&#39;</span><span class="p">:</span> <span class="s1">&#39;open&#39;</span><span class="p">},</span>
 <span class="linenos" data-linenos="22 "></span>    <span class="p">)</span>
 </code></pre></div>
-      </details>
+          </details>
   </div>
 
 </div>
@@ -976,11 +976,11 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 23, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 23, 2023</span>
       
         <br>
         Created:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 23, 2023</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 23, 2023</span>
       
     
   </small>
@@ -1022,14 +1022,18 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../../../..", "features": ["toc.autohide"], "search": "../../../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../../..", "features": ["toc.autohide"], "search": "../../../../../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../../../../assets/javascripts/bundle.b4d07000.min.js"></script>
+      <script src="../../../../../assets/javascripts/bundle.220ee61c.min.js"></script>
       
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+        
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+        
       
-        <script src="../../../../../_javascript/tables.js"></script>
+        
+          <script src="../../../../../_javascript/tables.js"></script>
+        
       
     
   </body>

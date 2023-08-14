@@ -46,7 +46,7 @@ poetry config pypi-token.pypi ...
 <!-- {cts} COVERAGE -->
 | File                                   |   Statements |   Missing |   Excluded | Coverage   |
 |----------------------------------------|--------------|-----------|------------|------------|
-| `shoal/__init__.py`                    |            2 |         0 |          0 | 100.0%     |
+| `shoal/__init__.py`                    |           32 |         4 |          0 | 80.0%      |
 | `shoal/dev_boards/__init__.py`         |            2 |         2 |          0 | 0.0%       |
 | `shoal/dev_boards/cli.py`              |            7 |         7 |          1 | 0.0%       |
 | `shoal/dev_boards/merge/__init__.py`   |            0 |         0 |          0 | 100.0%     |
@@ -55,9 +55,9 @@ poetry config pypi-token.pypi ...
 | `shoal/dev_boards/merge/gh_wrapper.py` |           59 |        59 |          0 | 0.0%       |
 | `shoal/dev_boards/scripts.py`          |            4 |         4 |          4 | 0.0%       |
 | `shoal/dev_boards/tasks/__init__.py`   |            0 |         0 |          0 | 100.0%     |
-| `shoal/dev_boards/tasks/all_tasks.py`  |            8 |         8 |          0 | 0.0%       |
+| `shoal/dev_boards/tasks/all_tasks.py`  |            6 |         6 |          0 | 0.0%       |
 | `shoal/scripts.py`                     |            7 |         7 |          0 | 0.0%       |
-| **Totals**                             |          173 |       171 |          5 | 0.9%       |
+| **Totals**                             |          201 |       173 |          5 | 12.7%      |
 
-Generated on: 2023-07-23
+Generated on: 2023-08-14
 <!-- {cte} -->

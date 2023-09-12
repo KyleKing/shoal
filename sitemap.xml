@@ -36,6 +36,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://shoal.kyleking.me/reference/SUMMARY/</loc>
+         <lastmod>2023-09-12</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://shoal.kyleking.me/reference/shoal/</loc>
          <lastmod>2023-09-12</lastmod>
          <changefreq>daily</changefreq>

@@ -9,13 +9,13 @@ from corallium.log import configure_logger
 from textual.app import App, ComposeResult
 from textual.binding import Binding
 from textual.events import Mount
-from textual.widgets import ContentSwitcher, DataTable, Footer, Header, TextLog
+from textual.widgets import ContentSwitcher, DataTable, Footer, Header, RichLog
 
 from .gh_wrapper import PRColumns, PRsSchema, list_prs, merge_pr, open_pr
 
 
 @beartype
-class DebugLog(TextLog):
+class DebugLog(RichLog):
     """Debug log widget."""
 
     DEFAULT_CSS = """
@@ -30,7 +30,7 @@ class DebugLog(TextLog):
     def compose(self) -> ComposeResult:
         super().compose()
         with ContentSwitcher(id='logs', initial=None):
-            yield TextLog(id='debug-log', markup=True, highlight=True)
+            yield RichLog(id='debug-log', markup=True, highlight=True)
 
     # Override the logger to point to the debug-log
     def _app_printer(
@@ -45,7 +45,7 @@ class DebugLog(TextLog):
     ) -> None:
         """App Log Writer."""
         values = ' '.join([f'{key}={value}' for key, value in kwargs.items()])
-        log = self.query_one('#debug-log', TextLog)
+        log = self.query_one('#debug-log', RichLog)
         if is_header:
             log.write('')
         log.write(f'{message} {values}'.strip())
@@ -57,7 +57,7 @@ class DebugLog(TextLog):
 
     def action_toggle_text_log(self) -> None:
         text_log_id = next(self._text_logs)
-        new_id = self.query_one(f'#{text_log_id}', TextLog).id if text_log_id else None
+        new_id = self.query_one(f'#{text_log_id}', RichLog).id if text_log_id else None
         self.query_one('#logs', ContentSwitcher).current = new_id
 
 

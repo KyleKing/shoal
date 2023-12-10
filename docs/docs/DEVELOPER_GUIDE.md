@@ -59,5 +59,5 @@ poetry config pypi-token.pypi ...
 | `shoal/scripts.py`                     |            5 |         5 |          0 | 0.0%       |
 | **Totals**                             |          184 |       167 |         22 | 7.6%       |
 
-Generated on: 2023-10-14
+Generated on: 2023-12-10
 <!-- {cte} -->

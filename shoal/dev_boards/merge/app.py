@@ -117,7 +117,7 @@ class MergeApp(App):  # type: ignore[type-arg]
         # PLANNED: Add question mark for a help menu
     ]
 
-    def compose(self) -> ComposeResult:
+    def compose(self) -> ComposeResult:  # noqa: PLR6301
         """Called to add widgets to the app."""
         header = Header()
         header.tall = True

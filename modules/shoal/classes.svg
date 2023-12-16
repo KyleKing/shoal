@@ -9,11 +9,11 @@
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 194)">
 <title>classes</title>
 <polygon fill="white" stroke="transparent" points="-4,4 -4,-194 1711.5,-194 1711.5,4 -4,4"/>
-<!-- shoal.dev_boards.merge.gh_wrapper.PRsSchema.Config -->
+<!-- shoal.dev_boards.merge.gh_wrapper.PRsSchema.BaseConfig -->
 <g id="node1" class="node">
-<title>shoal.dev_boards.merge.gh_wrapper.PRsSchema.Config</title>
+<title>shoal.dev_boards.merge.gh_wrapper.PRsSchema.BaseConfig</title>
 <polygon fill="none" stroke="black" points="0,-53 0,-137 107,-137 107,-53 0,-53"/>
-<text text-anchor="start" x="30.5" y="-121.8" font-family="Times,serif" font-size="14.00">Config</text>
+<text text-anchor="start" x="13" y="-121.8" font-family="Times,serif" font-size="14.00">BaseConfig</text>
 <polyline fill="none" stroke="black" points="0,-114 107,-114 "/>
 <text text-anchor="start" x="8" y="-98.8" font-family="Times,serif" font-size="14.00">coerce : bool</text>
 <text text-anchor="start" x="8" y="-83.8" font-family="Times,serif" font-size="14.00">strict : bool</text>

@@ -1,5 +1,6 @@
 """A Textual Dashboard app for managing PRs."""
 
+import asyncio
 import logging
 from itertools import cycle
 from typing import Any, ClassVar
@@ -50,8 +51,8 @@ class DebugLog(RichLog):
             log.write('')
         log.write(f'{message} {values}'.strip())
 
-    def _on_mount(self, _: Mount) -> None:
-        super()._on_mount(_)
+    def _on_mount(self, event: Mount) -> None:
+        super()._on_mount(event)
         # Mount the logger to the debug log
         configure_logger(log_level=logging.DEBUG, logger=self._app_printer)
 
@@ -80,12 +81,12 @@ class PRsDataTable(DataTable):  # type: ignore[type-arg]
         row = self.get_row_at(self.cursor_coordinate.row)
         return dict(zip(self._columns, row, strict=True))
 
-    async def on_mount(self) -> None:
+    def on_mount(self) -> None:
         super().on_mount()  # type: ignore[no-untyped-call]
         self.cursor_type = 'row'
         self.zebra_stripes = True
         self.add_columns(*self._columns)
-        await self.action_refresh_rows()
+        asyncio.run(self.action_refresh_rows())
 
     async def action_refresh_rows(self) -> None:
         self.clear()
@@ -117,7 +118,7 @@ class MergeApp(App):  # type: ignore[type-arg]
         # PLANNED: Add question mark for a help menu
     ]
 
-    def compose(self) -> ComposeResult:
+    def compose(self) -> ComposeResult:  # noqa: PLR6301
         """Called to add widgets to the app."""
         header = Header()
         header.tall = True

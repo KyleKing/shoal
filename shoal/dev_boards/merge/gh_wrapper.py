@@ -28,7 +28,7 @@ class PRsSchema(pa.SchemaModel):
     isDraft: Series[bool]  # noqa: N815
     isLocked: Series[bool]  # noqa: N815
 
-    class Config:
+    class BaseConfig:
         """Pandera Config."""
 
         strict = True

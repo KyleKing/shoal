@@ -48,7 +48,7 @@ poetry config pypi-token.pypi ...
 |----------------------------------------|--------------|-----------|------------|------------|
 | `shoal/__init__.py`                    |           17 |         0 |         17 | 100.0%     |
 | `shoal/dev_boards/__init__.py`         |            2 |         2 |          0 | 0.0%       |
-| `shoal/dev_boards/cli.py`              |            7 |         7 |          1 | 0.0%       |
+| `shoal/dev_boards/cli.py`              |            6 |         6 |          3 | 0.0%       |
 | `shoal/dev_boards/merge/__init__.py`   |            0 |         0 |          0 | 100.0%     |
 | `shoal/dev_boards/merge/app.py`        |           74 |        74 |          0 | 0.0%       |
 | `shoal/dev_boards/merge/config.py`     |           10 |        10 |          0 | 0.0%       |
@@ -57,7 +57,7 @@ poetry config pypi-token.pypi ...
 | `shoal/dev_boards/tasks/__init__.py`   |            0 |         0 |          0 | 100.0%     |
 | `shoal/dev_boards/tasks/all_tasks.py`  |            6 |         6 |          0 | 0.0%       |
 | `shoal/scripts.py`                     |            5 |         5 |          0 | 0.0%       |
-| **Totals**                             |          184 |       167 |         22 | 7.6%       |
+| **Totals**                             |          183 |       166 |         24 | 7.6%       |
 
-Generated on: 2023-10-14
+Generated on: 2023-12-16
 <!-- {cte} -->

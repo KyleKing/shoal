@@ -8,7 +8,7 @@
 | FIXME   | Rename to more general 'GitOps UI'?                           | 2023-06-23  | [shoal/dev_boards/merge/__init__.py:1](https://github.com/kyleking/shoal/blame/8c36d2ef6474fbfae6dfb8285e462e8b2a59018d/shoal/dev_boards/merge/__init__.py#L1) |
 | FIXME   | move to screens/widgets                                       | 2023-06-23  | [shoal/dev_boards/merge/__init__.py:2](https://github.com/kyleking/shoal/blame/8c36d2ef6474fbfae6dfb8285e462e8b2a59018d/shoal/dev_boards/merge/__init__.py#L2) |
 | TODO    | Add a Settings page                                           | 2023-06-23  | [shoal/dev_boards/merge/__init__.py:3](https://github.com/kyleking/shoal/blame/8c36d2ef6474fbfae6dfb8285e462e8b2a59018d/shoal/dev_boards/merge/__init__.py#L3) |
-| PLANNED | Add question mark for a help menu                             | 2023-06-23  | [shoal/dev_boards/merge/app.py:117](https://github.com/kyleking/shoal/blame/8c36d2ef6474fbfae6dfb8285e462e8b2a59018d/shoal/dev_boards/merge/app.py#L117)       |
+| PLANNED | Add question mark for a help menu                             | 2023-06-23  | [shoal/dev_boards/merge/app.py:118](https://github.com/kyleking/shoal/blame/8c36d2ef6474fbfae6dfb8285e462e8b2a59018d/shoal/dev_boards/merge/app.py#L117)       |
 
 Found code tags for FIXME (2), TODO (3), PLANNED (2)
 

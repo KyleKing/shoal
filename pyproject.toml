@@ -46,3 +46,9 @@ shoal = "shoal.scripts:start"
 [tool.pyright]
 include = ["shoal"]
 pythonVersion = "3.11"
+
+[tool.tomlsort]
+all = true
+in_place = true
+sort_first = ["python"]
+trailing_comma_inline_array = true

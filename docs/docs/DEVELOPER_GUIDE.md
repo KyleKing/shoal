@@ -46,18 +46,18 @@ poetry config pypi-token.pypi ...
 <!-- {cts} COVERAGE -->
 | File                                   |   Statements |   Missing |   Excluded | Coverage   |
 |----------------------------------------|--------------|-----------|------------|------------|
-| `shoal/__init__.py`                    |           17 |         0 |         17 | 100.0%     |
+| `shoal/__init__.py`                    |           16 |         0 |         24 | 100.0%     |
 | `shoal/dev_boards/__init__.py`         |            2 |         2 |          0 | 0.0%       |
-| `shoal/dev_boards/cli.py`              |            6 |         6 |          3 | 0.0%       |
+| `shoal/dev_boards/cli.py`              |            5 |         5 |         13 | 0.0%       |
 | `shoal/dev_boards/merge/__init__.py`   |            0 |         0 |          0 | 100.0%     |
 | `shoal/dev_boards/merge/app.py`        |           75 |        75 |          0 | 0.0%       |
 | `shoal/dev_boards/merge/config.py`     |           10 |        10 |          0 | 0.0%       |
 | `shoal/dev_boards/merge/gh_wrapper.py` |           59 |        59 |          0 | 0.0%       |
-| `shoal/dev_boards/scripts.py`          |            4 |         4 |          4 | 0.0%       |
+| `shoal/dev_boards/scripts.py`          |            3 |         3 |          5 | 0.0%       |
 | `shoal/dev_boards/tasks/__init__.py`   |            0 |         0 |          0 | 100.0%     |
 | `shoal/dev_boards/tasks/all_tasks.py`  |            6 |         6 |          0 | 0.0%       |
 | `shoal/scripts.py`                     |            5 |         5 |          0 | 0.0%       |
-| **Totals**                             |          184 |       167 |         24 | 7.6%       |
+| **Totals**                             |          181 |       165 |         42 | 7.2%       |
 
-Generated on: 2024-04-18
+Generated on: 2024-06-07
 <!-- {cte} -->

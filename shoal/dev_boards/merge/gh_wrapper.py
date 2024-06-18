@@ -8,7 +8,7 @@ import pandas as pd
 import pandera as pa
 from beartype import beartype
 from beartype.typing import Optional
-from corallium.log import logger
+from corallium.log import LOGGER
 from corallium.shell import capture_shell_async
 from pandera.typing import Series
 
@@ -21,8 +21,8 @@ class PRsSchema(pa.SchemaModel):
     number: Series[str]
     repository: Series[str]
     title: Series[str]
-    createdAt: Series[np.datetime64]  # noqa: N815
-    updatedAt: Series[np.datetime64]  # noqa: N815
+    createdAt: Series[np.datetime64]  # type: ignore[type-var] # noqa: N815
+    updatedAt: Series[np.datetime64]  # type: ignore[type-var] # noqa: N815
     commentsCount: Series[int]  # noqa: N815
     state: Series[str]  # = pa.Field(nullable=True)
     isDraft: Series[bool]  # noqa: N815
@@ -64,9 +64,9 @@ async def _safe_cmd(*, cmd: str) -> str:
     output = ''
     try:
         output = await capture_shell_async(cmd)
-        logger.debug('Shell Output', cmd=cmd, output=output)
+        LOGGER.debug('Shell Output', cmd=cmd, output=output)
     except Exception:
-        logger.exception('Error in command', cmd=cmd)
+        LOGGER.exception('Error in command', cmd=cmd)
     return output
 
 

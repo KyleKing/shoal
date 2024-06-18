@@ -4,7 +4,7 @@ from types import ModuleType
 
 from beartype import beartype
 from beartype.typing import Optional
-from calcipy.cli import Collection
+from calcipy.cli import Collection  # type: ignore[attr-defined]
 from invoke.program import Program
 
 

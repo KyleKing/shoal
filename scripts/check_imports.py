@@ -2,6 +2,6 @@
 
 from pprint import pprint
 
-from shoal import replace_me
+from shoal.scripts import start
 
 pprint(locals())  # noqa: T203

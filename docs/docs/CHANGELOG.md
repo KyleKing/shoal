@@ -7,6 +7,7 @@
 
 ### Fix
 
+- resolve CI issues
 - resolve breaking changes in Textual
 - resolve issues post-merge of dev-boards
 - final commit. Moving all logic into calcipy

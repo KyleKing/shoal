@@ -47,7 +47,8 @@ poetry config pypi-token.pypi ...
 <!-- {cts} COVERAGE -->
 | File                                   |   Statements |   Missing |   Excluded | Coverage   |
 |----------------------------------------|--------------|-----------|------------|------------|
-| `shoal/__init__.py`                    |           16 |         0 |         24 | 100.0%     |
+| `shoal/__init__.py`                    |            4 |         0 |          0 | 100.0%     |
+| `shoal/_runtime_type_check_setup.py`   |           13 |         0 |         28 | 100.0%     |
 | `shoal/dev_boards/__init__.py`         |            2 |         2 |          0 | 0.0%       |
 | `shoal/dev_boards/cli.py`              |            5 |         5 |         13 | 0.0%       |
 | `shoal/dev_boards/merge/__init__.py`   |            0 |         0 |          0 | 100.0%     |
@@ -58,7 +59,7 @@ poetry config pypi-token.pypi ...
 | `shoal/dev_boards/tasks/__init__.py`   |            0 |         0 |          0 | 100.0%     |
 | `shoal/dev_boards/tasks/all_tasks.py`  |            6 |         6 |          0 | 0.0%       |
 | `shoal/scripts.py`                     |            5 |         5 |          0 | 0.0%       |
-| **Totals**                             |          181 |       165 |         42 | 7.2%       |
+| **Totals**                             |          182 |       165 |         46 | 7.7%       |
 
 Generated on: 2024-06-18
 <!-- {cte} -->

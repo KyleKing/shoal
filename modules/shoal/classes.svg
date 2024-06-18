@@ -87,9 +87,9 @@
 <polyline fill="none" stroke="black" points="1193.5,-23.5 1457.5,-23.5 "/>
 <text text-anchor="start" x="1323" y="-8.3" font-family="Times,serif" font-size="14.00"> </text>
 </g>
-<!-- shoal._RuntimeTypeCheckingModes -->
+<!-- shoal._runtime_type_check_setup._RuntimeTypeCheckingModes -->
 <g id="node7" class="node">
-<title>shoal._RuntimeTypeCheckingModes</title>
+<title>shoal._runtime_type_check_setup._RuntimeTypeCheckingModes</title>
 <polygon fill="none" stroke="black" points="1475.5,-60.5 1475.5,-129.5 1707.5,-129.5 1707.5,-60.5 1475.5,-60.5"/>
 <text text-anchor="start" x="1483.5" y="-114.3" font-family="Times,serif" font-size="14.00">_RuntimeTypeCheckingModes</text>
 <polyline fill="none" stroke="black" points="1475.5,-106.5 1707.5,-106.5 "/>

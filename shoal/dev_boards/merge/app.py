@@ -3,7 +3,7 @@
 import asyncio
 import logging
 from itertools import cycle
-from typing import Any, ClassVar
+from typing import ClassVar
 
 from beartype import beartype
 from corallium.log import configure_logger
@@ -29,6 +29,7 @@ class DebugLog(RichLog):
     _text_logs = cycle(['debug-log', None])
 
     def compose(self) -> ComposeResult:
+        """Textual method."""
         super().compose()
         with ContentSwitcher(id='logs', initial=None):
             yield RichLog(id='debug-log', markup=True, highlight=True)
@@ -42,7 +43,7 @@ class DebugLog(RichLog):
         _this_level: int,
         _is_text: bool,
         # Logger-specific parameters that need to be initialized with partial(...)
-        **kwargs: Any,
+        **kwargs,
     ) -> None:
         """App Log Writer."""
         values = ' '.join([f'{key}={value}' for key, value in kwargs.items()])
@@ -52,11 +53,13 @@ class DebugLog(RichLog):
         log.write(f'{message} {values}'.strip())
 
     def _on_mount(self, event: Mount) -> None:
+        """Textual method."""
         super()._on_mount(event)
         # Mount the logger to the debug log
         configure_logger(log_level=logging.DEBUG, logger=self._app_printer)
 
     def action_toggle_text_log(self) -> None:
+        """Textual method."""
         text_log_id = next(self._text_logs)
         new_id = self.query_one(f'#{text_log_id}', RichLog).id if text_log_id else None
         self.query_one('#logs', ContentSwitcher).current = new_id
@@ -82,26 +85,31 @@ class PRsDataTable(DataTable):  # type: ignore[type-arg]
         return dict(zip(self._columns, row, strict=True))
 
     def on_mount(self) -> None:
-        super().on_mount()  # type: ignore[no-untyped-call]
+        """Textual method."""
+        super().on_mount()
         self.cursor_type = 'row'
         self.zebra_stripes = True
         self.add_columns(*self._columns)
         asyncio.run(self.action_refresh_rows())
 
     async def action_refresh_rows(self) -> None:
+        """Textual method."""
         self.clear()
         df_prs = await list_prs()
         self.add_rows(df_prs.itertuples(index=False))
 
     async def action_open_selected_pr(self) -> None:
+        """Textual action."""
         row_data = self._get_selected_row()
         await open_pr(repository=row_data[PRsSchema.repository], pr_id=row_data[PRsSchema.number])
 
     async def action_merge_selected_pr(self) -> None:
+        """Textual action."""
         row_data = self._get_selected_row()
         await merge_pr(repository=row_data[PRsSchema.repository], pr_id=row_data[PRsSchema.number], use_squash=False)
 
     async def action_squash_selected_pr(self) -> None:
+        """Textual action."""
         row_data = self._get_selected_row()
         await merge_pr(repository=row_data[PRsSchema.repository], pr_id=row_data[PRsSchema.number], use_squash=True)
 
@@ -119,7 +127,7 @@ class MergeApp(App):  # type: ignore[type-arg]
     ]
 
     def compose(self) -> ComposeResult:  # noqa: PLR6301
-        """Called to add widgets to the app."""
+        """Call to add widgets to the app."""
         header = Header()
         header.tall = True
         yield header
@@ -131,6 +139,7 @@ class MergeApp(App):  # type: ignore[type-arg]
         return self.query_one('#datatable', PRsDataTable)
 
     def action_toggle_text_log(self) -> None:
+        """Textual action."""
         self.query_one(DebugLog).action_toggle_text_log()
 
 

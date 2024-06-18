@@ -145,13 +145,13 @@ files = [
 
 [[package]]
 name = "calcipy"
-version = "3.0.0"
+version = "3.0.1"
 description = "Python package to simplify development"
 optional = false
 python-versions = "<4.0.0,>=3.9.13"
 files = [
-    {file = "calcipy-3.0.0-py3-none-any.whl", hash = "sha256:d5ecbc0ce316e427faa793d485eb9bb40f508b1fe6b4b958ee9d55b61a99cf68"},
-    {file = "calcipy-3.0.0.tar.gz", hash = "sha256:dd659742707261e21be367047a53bf7e62d9b88949eb2e8fb4448a078e829ed8"},
+    {file = "calcipy-3.0.1-py3-none-any.whl", hash = "sha256:2fedc6564ad4b2d16c02c8bd8571732688fe76ed102b80a3da05e86be8918993"},
+    {file = "calcipy-3.0.1.tar.gz", hash = "sha256:f9e409dbfda2c6e9fbc379958dc547bafbf8a883e8676f7b5fd3a8f6c5db8680"},
 ]
 
 [package.dependencies]
@@ -1401,6 +1401,21 @@ test = ["hypothesis (>=6.46.1)", "pytest (>=7.3.2)", "pytest-xdist (>=2.2.0)"]
 xml = ["lxml (>=4.9.2)"]
 
 [[package]]
+name = "pandas-stubs"
+version = "2.2.2.240603"
+description = "Type annotations for pandas"
+optional = false
+python-versions = ">=3.9"
+files = [
+    {file = "pandas_stubs-2.2.2.240603-py3-none-any.whl", hash = "sha256:e08ce7f602a4da2bff5a67475ba881c39f2a4d4f7fccc1cba57c6f35a379c6c0"},
+    {file = "pandas_stubs-2.2.2.240603.tar.gz", hash = "sha256:2dcc86e8fa6ea41535a4561c1f08b3942ba5267b464eff2e99caeee66f9e4cd1"},
+]
+
+[package.dependencies]
+numpy = {version = ">=1.23.5", markers = "python_version >= \"3.9\" and python_version < \"3.12\""}
+types-pytz = ">=2022.1.1"
+
+[[package]]
 name = "pandera"
 version = "0.19.3"
 description = "A light-weight and flexible data validation and testing tool for statistical data objects."
@@ -2147,6 +2162,17 @@ files = [
 ]
 
 [[package]]
+name = "types-pytz"
+version = "2024.1.0.20240417"
+description = "Typing stubs for pytz"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "types-pytz-2024.1.0.20240417.tar.gz", hash = "sha256:6810c8a1f68f21fdf0f4f374a432487c77645a0ac0b31de4bf4690cf21ad3981"},
+    {file = "types_pytz-2024.1.0.20240417-py3-none-any.whl", hash = "sha256:8335d443310e2db7b74e007414e74c4f53b67452c0cb0d228ca359ccfba59659"},
+]
+
+[[package]]
 name = "typing-extensions"
 version = "4.12.1"
 description = "Backported and Experimental Type Hints for Python 3.8+"
@@ -2400,4 +2426,4 @@ test = ["big-O", "importlib-resources", "jaraco.functools", "jaraco.itertools", 
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.11.2,<3.12"
-content-hash = "51a851272bc7634045ffde3402ed9bf14531d5763e2c9a526b3a5957504eb7e3"
+content-hash = "c7d2c0bf1a37302b80502aa6d2cbf7667b58866f8bcfbf8187e84d5d0de93102"

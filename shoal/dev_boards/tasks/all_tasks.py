@@ -3,10 +3,10 @@
 from calcipy.cli import task
 from invoke.context import Context
 
-from ..merge.app import MergeApp
+from shoal.dev_boards.merge.app import MergeApp
 
 
-@task()  # type: ignore[misc]
+@task()
 def merge(_ctx: Context) -> None:
     """Merge Task."""
     MergeApp().run()

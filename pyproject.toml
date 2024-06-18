@@ -54,6 +54,7 @@ textual = ">=0.40.0"
 
 [tool.poetry.group.dev.dependencies]
 calcipy = {extras = ["doc", "lint", "nox", "stale", "tags", "test", "types"], version = ">=3.0.1"}
+pandas-stubs = ">=2.2.2.240603"
 
 [tool.poetry.scripts]
 brds = "shoal.dev_boards.scripts:start"
